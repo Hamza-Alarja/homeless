@@ -1,4 +1,13 @@
-import { Heading, Flex, Text, Skeleton, ChartIcon, CommunityIcon, SwapIcon,useMatchBreakpoints  } from '@pancakeswap/uikit'
+import {
+  Heading,
+  Flex,
+  Text,
+  Skeleton,
+  ChartIcon,
+  CommunityIcon,
+  SwapIcon,
+  useMatchBreakpoints,
+} from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
 import { formatLocalisedCompactNumber } from '@pancakeswap/utils/formatBalance'
@@ -8,9 +17,10 @@ import StatCardContent from './StatCardContent'
 import GradientLogo from '../GradientLogoSvg'
 import { ASSET_CDN } from 'config/constants/endpoints'
 import Image from 'next/legacy/image'
-import  styled  from 'styled-components'
+import styled from 'styled-components'
 import { ChainTags } from './ChainTags'
 import { MetricsCard } from './MetricsCard'
+import { style } from '@vanilla-extract/css'
 
 const ImageLayer = styled.div`
   position: absolute;
@@ -81,21 +91,19 @@ const Stats = () => {
 
   return (
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
-    {/*   <GradientLogo height="48px" width="48px" mb="24px" /> */}
+      {/*   <GradientLogo height="48px" width="48px" mb="24px" /> */}
 
-    <img
-  src="/images/homless.png"
-  alt="homlesswap"
-  width="150px"
-  height="150px"
-  style={{ margin: '0 0 30px 0' }} // 12px vertical, 0 horizontal
-/>
-  
-
-
+      <img
+        src="/images/homless.png"
+        alt="homlesswap"
+        width="150px"
+        height="150px"
+        style={{ margin: '0 0 30px 0' }} // 12px vertical, 0 horizontal
+      />
+      <p style={{ paddingBottom: '15px' }}>Homeless Wallet & NFT Coming Soon!</p>
 
       <ChainTags />
-{/*       <ImageLayer>
+      {/*       <ImageLayer>
         <BnbBallRocket>
           <Image
             src={`${ASSET_CDN}/web/landing/bnb-ball-rocket.png`}
@@ -125,7 +133,7 @@ const Stats = () => {
         </AptosBallRocket>
       </ImageLayer> */}
 
-    {/*   <Flex maxWidth="100%" flexDirection={['column', null, null, 'row']}>
+      {/*   <Flex maxWidth="100%" flexDirection={['column', null, null, 'row']}>
         <IconCard {...UsersCardData} mr={[null, null, null, '16px']} mb={['16px', null, null, '0']}>
           <StatCardContent
             headingText={"BnB"}

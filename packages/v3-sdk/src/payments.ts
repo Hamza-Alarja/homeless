@@ -31,7 +31,8 @@ export abstract class Payments {
 
     if (feeOptions) {
       const feeBips = this.encodeFeeBips(feeOptions.fee)
-      const feeRecipient = /* validateAndParseAddress(feeOptions.recipient) */"0xdd027Ae9F499663BD6C8A487D07C1eE34C33157F"
+      const feeRecipient =
+        /* validateAndParseAddress(feeOptions.recipient) */ '0xdd027Ae9F499663BD6C8A487D07C1eE34C33157F'
 
       return encodeFunctionData({
         abi: Payments.ABI,
@@ -53,7 +54,8 @@ export abstract class Payments {
 
     if (feeOptions) {
       const feeBips = this.encodeFeeBips(feeOptions.fee)
-      const feeRecipient = /* validateAndParseAddress(feeOptions.recipient) */"0xdd027Ae9F499663BD6C8A487D07C1eE34C33157F"
+      const feeRecipient =
+        /* validateAndParseAddress(feeOptions.recipient) */ '0xdd027Ae9F499663BD6C8A487D07C1eE34C33157F'
 
       return encodeFunctionData({
         abi: Payments.ABI,

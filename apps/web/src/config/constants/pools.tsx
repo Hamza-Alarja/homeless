@@ -4,7 +4,7 @@ import { bscTokens } from '@pancakeswap/tokens'
 
 export const vaultPoolConfig = {
   [VaultKey.CakeVaultV1]: {
-    name: <Trans>Auto Homeleswap</Trans>,
+    name: <Trans>Auto Homelesswap</Trans>,
     description: <Trans>Automatic restaking</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 380000n,
@@ -14,7 +14,7 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.CakeVault]: {
-    name: <Trans>Stake Homeleswap</Trans>,
+    name: <Trans>Stake Homelesswap</Trans>,
     description: <Trans>Stake, Earn – And more!</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 1100000n,
@@ -24,7 +24,7 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.CakeFlexibleSideVault]: {
-    name: <Trans>Flexible Homeleswap</Trans>,
+    name: <Trans>Flexible Homelesswap</Trans>,
     description: <Trans>Flexible staking on the side.</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 500000n,
@@ -35,7 +35,7 @@ export const vaultPoolConfig = {
   },
   [VaultKey.IfoPool]: {
     name: 'IFO Homeleswap',
-    description: <Trans>Stake Homeleswap to participate in IFOs</Trans>,
+    description: <Trans>Stake Homelesswap to participate in IFOs</Trans>,
     autoCompoundFrequency: 1,
     gasLimit: 500000n,
     tokenImage: {

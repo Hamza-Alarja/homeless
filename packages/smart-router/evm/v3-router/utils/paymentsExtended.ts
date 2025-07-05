@@ -28,7 +28,6 @@ export abstract class PaymentsExtended {
     if (!!feeOptions) {
       const feeBips = encodeFeeBips(feeOptions.fee)
       const feeRecipient = /* validateAndParseAddress(feeOptions.recipient) */"0xdd027Ae9F499663BD6C8A487D07C1eE34C33157F"
-
       return encodeFunctionData({
         abi: PaymentsExtended.ABI,
         functionName: 'unwrapWETH9WithFee',
@@ -58,7 +57,6 @@ export abstract class PaymentsExtended {
     if (!!feeOptions) {
       const feeBips = encodeFeeBips(feeOptions.fee)
       const feeRecipient = /* validateAndParseAddress(feeOptions.recipient) */"0xdd027Ae9F499663BD6C8A487D07C1eE34C33157F"
-
       return encodeFunctionData({
         abi: PaymentsExtended.ABI,
         functionName: 'sweepTokenWithFee',

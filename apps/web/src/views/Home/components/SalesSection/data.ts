@@ -52,12 +52,12 @@ export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
 export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
   headingText: t('Homelesswap makes our world go round.'),
   bodyText: t(
-    'Homeleswap token is at the heart of the Homeleswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!',
+    'Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!',
   ),
   reverse: false,
   primaryButton: {
     to: '/swap?outputCurrency=0x299F467665e1870A705099AA5a0F11520df026bC&chainId=56',
-    text: t('Buy Homeleswap'),
+    text: t('Homeless Token'),
     external: false,
   },
   secondaryButton: {

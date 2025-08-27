@@ -56,7 +56,7 @@ export default function Home() {
   // Chart data formatting
   const formattedTvlData = useMemo(() => {
     if (chartData?.length > 0) {
-      return chartData.map(day => ({
+      return chartData.map((day) => ({
         time: unixToDate(day.date),
         value: day.tvlUSD,
       }))
@@ -70,14 +70,14 @@ export default function Home() {
       const trendValue = baseValue * (1 + i * 0.005)
       return {
         time: unixToDate(Math.floor(date.getTime() / 1000)),
-        value: trendValue * (1 + randomVariation)
+        value: trendValue * (1 + randomVariation),
       }
     })
   }, [chartData])
 
   const formattedVolumeData = useMemo(() => {
     if (chartData?.length > 0) {
-      return chartData.map(day => ({
+      return chartData.map((day) => ({
         time: unixToDate(day.date),
         value: day.volumeUSD,
       }))
@@ -91,22 +91,26 @@ export default function Home() {
       const weekendFactor = [0, 6].includes(date.getDay()) ? 0.7 : 1.0
       return {
         time: unixToDate(Math.floor(date.getTime() / 1000)),
-        value: baseVolume * weekendFactor * (1 + randomVariation)
+        value: baseVolume * weekendFactor * (1 + randomVariation),
       }
     })
   }, [chartData])
 
-const weeklyVolumeData = useTransformedVolumeData(chartData, 'week');
-const monthlyVolumeData = useTransformedVolumeData(chartData, 'month');
+  const weeklyVolumeData = useTransformedVolumeData(chartData, 'week')
+  const monthlyVolumeData = useTransformedVolumeData(chartData, 'month')
   const [volumeWindow, setVolumeWindow] = useState<VolumeWindow>(VolumeWindow.daily)
 
   // Token data with logo support
   const formattedTokens = useMemo(() => {
+    const homelessAddress = '0x299F467665e1870A705099AA5a0F11520df026bC'
+    const homelessAddressLower = homelessAddress.toLowerCase()
+    const logoURI = 'https://www.homelesswap.finance/images/homless.png'
+
     const homelessTokenData = {
       exists: true,
       name: 'Homeless Token',
       symbol: 'HLS',
-      address: '0x299F467665e1870A705099AA5a0F11520df026bC',
+      address: homelessAddress,
       decimals: 18,
       volumeUSD: 2500000,
       volumeUSDChange: 15.5,
@@ -121,31 +125,37 @@ const monthlyVolumeData = useTransformedVolumeData(chartData, 'month');
       priceUSDChangeWeek: 35.2,
       // Ensure logo will be resolved automatically
       chainId,
+      logoURI,
     }
 
     const tokens = [homelessTokenData]
-    
+
     if (topTokensData) {
       tokens.push(
         ...Object.values(topTokensData)
-          .filter(d => !isUndefinedOrNull(d) && d.tvlUSD > 0)
-          .filter(d => d.address.toLowerCase() !== homelessTokenData.address.toLowerCase())
-          .map(d => ({ ...d, chainId })) // Ensure chainId is set for all tokens
+          .filter((d) => !isUndefinedOrNull(d) && d.tvlUSD > 0)
+          .filter((d) => d.address.toLowerCase() !== homelessTokenData.address.toLowerCase())
+          .map((d) => ({ ...d, chainId })), // Ensure chainId is set for all tokens
       )
     }
-    
+
     return tokens
   }, [topTokensData, chainId])
 
   // Pool data with logo support
   const poolDatas = useMemo(() => {
+    const homelessAddress = '0x299F467665e1870A705099AA5a0F11520df026bC'
+    const homelessAddressLower = homelessAddress.toLowerCase()
+    const logoURI = 'https://www.homelesswap.finance/images/homless.png'
+
     const homelessToken = {
       name: 'Homeless Token',
       symbol: 'HLS',
-      address: '0x299F467665e1870A705099AA5a0F11520df026bC',
+      address: homelessAddress,
       decimals: 18,
       derivedETH: 0.000072,
       chainId, // Important for logo resolution
+      logoURI,
     }
 
     const homelessBnbPool = {
@@ -172,7 +182,7 @@ const monthlyVolumeData = useTransformedVolumeData(chartData, 'month');
       token1Price: 620.5,
       tvlToken0: 277777777,
       tvlToken1: 20161,
-      feeUSD: 75000
+      feeUSD: 75000,
     }
 
     const homelessUsdtPool = {
@@ -199,46 +209,62 @@ const monthlyVolumeData = useTransformedVolumeData(chartData, 'month');
       token1Price: 1.001,
       tvlToken0: 166666666,
       tvlToken1: 7492507,
-      feeUSD: 40000
+      feeUSD: 40000,
     }
 
     const pools = [homelessBnbPool, homelessUsdtPool]
-    
+
     if (topPoolsData) {
       pools.push(
         ...Object.values(topPoolsData)
-          .filter(p => !isUndefinedOrNull(p))
-          .filter(p => {
+          .filter((p) => !isUndefinedOrNull(p))
+          .filter((p) => {
             const token0Addr = p.token0?.address?.toLowerCase() || ''
             const token1Addr = p.token1?.address?.toLowerCase() || ''
             const homelessAddr = homelessToken.address.toLowerCase()
             return token0Addr !== homelessAddr && token1Addr !== homelessAddr
           })
-          .map(p => ({
+          .map((p) => ({
             ...p,
-            token0: p.token0 ? { ...p.token0, chainId } : undefined,
-            token1: p.token1 ? { ...p.token1, chainId } : undefined,
-          }))
+            token0: p.token0
+              ? {
+                  ...p.token0,
+                  chainId,
+                  logoURI:
+                    p.token0.logoURI ||
+                    (p.token0.symbol === 'HLS' ? 'https://www.homelesswap.finance/images/homless.png' : ''),
+                }
+              : undefined,
+            token1: p.token1
+              ? {
+                  ...p.token1,
+                  chainId,
+                  logoURI:
+                    p.token1.logoURI ||
+                    (p.token1.symbol === 'HLS' ? 'https://www.homelesswap.finance/images/homless.png' : ''),
+                }
+              : undefined,
+          })),
       )
     }
-    
+
     return pools
   }, [topPoolsData, chainId])
 
-  const tvlValue = useMemo(() => (
-    formatDollarAmount(liquidityHover, 2, true)
-  ), [liquidityHover])
+  const tvlValue = useMemo(() => formatDollarAmount(liquidityHover, 2, true), [liquidityHover])
 
-  const enhancedProtocolData = useMemo(() => (
-    protocolData || {
-      tvlUSD: 65000000,
-      tvlUSDChange: 9.8,
-      volumeUSD: 3200000,
-      volumeUSDChange: 16.2,
-      feesUSD: 160000,
-      feeChange: 18.5
-    }
-  ), [protocolData])
+  const enhancedProtocolData = useMemo(
+    () =>
+      protocolData || {
+        tvlUSD: 65000000,
+        tvlUSDChange: 9.8,
+        volumeUSD: 3200000,
+        volumeUSDChange: 16.2,
+        feesUSD: 160000,
+        feeChange: 18.5,
+      },
+    [protocolData],
+  )
 
   useEffect(() => {
     if (liquidityHover === undefined && enhancedProtocolData) {
@@ -251,7 +277,7 @@ const monthlyVolumeData = useTransformedVolumeData(chartData, 'month');
       <Heading scale="lg" mb="16px" color="#FFD700">
         {t('Homelesswap Info & Analytics')}
       </Heading>
-      
+
       <ChartCardsContainer>
         <Card>
           <LineChart

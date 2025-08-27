@@ -42,23 +42,58 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({ children }
   const { currentLanguage } = state
 
   useEffect(() => {
+    // تحميل ملفات الترجمة من المسار المحلي بدلاً من الإنترنت
     const fetchInitialLocales = async () => {
-      const codeFromStorage = getLanguageCodeFromLS()
-
-      if (codeFromStorage !== EN.locale) {
-        const currentLocale = await fetchLocale(codeFromStorage)
-        if (currentLocale) {
-          languageMap.set(codeFromStorage, currentLocale)
-          refresh()
+      try {
+        // قائمة اللغات المدعومة
+        const supportedLocales = [
+          'ar-SA',
+          'bn-BD',
+          'de-DE',
+          'el-GR',
+          'en-US',
+          'es-ES',
+          'fi-FI',
+          'fil-PH',
+          'fr-FR',
+          'hi-IN',
+          'hu-HU',
+          'id-ID',
+          'it-IT',
+          'ja-JP',
+          'ko-KR',
+          'nl-NL',
+          'pl-PL',
+          'pt-BR',
+          'pt-PT',
+          'ro-RO',
+          'ru-RU',
+          'sv-SE',
+          'ta-IN',
+          'tr-TR',
+          'uk-UA',
+          'vi-VN',
+          'zh-CN',
+          'zh-TW',
+        ]
+        for (const locale of supportedLocales) {
+          // استخدم require للاستيراد من المسار المحلي
+          // لاحظ أن هذا يعمل فقط في بيئة Node.js (سيرفر Next.js)
+          let translations = {}
+          try {
+            translations = require(`d:/homeless github/homeless/locales/${locale}.json`)
+          } catch (e) {
+            // إذا لم يوجد الملف أو حدث خطأ، استخدم ترجمة فارغة
+            translations = {}
+          }
+          languageMap.set(locale, translations)
         }
+        setState((prev) => ({ ...prev, isFetching: false }))
+      } catch (error) {
+        // في حال حدوث خطأ عام
+        setState((prev) => ({ ...prev, isFetching: false }))
       }
-
-      setState((prevState) => ({
-        ...prevState,
-        isFetching: false,
-      }))
     }
-
     fetchInitialLocales()
   }, [refresh])
 

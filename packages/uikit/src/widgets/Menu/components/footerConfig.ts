@@ -11,7 +11,7 @@ export const footerLinks: (t: ContextApi["t"]) => FooterLinkType[] = (t) => [
    
       },
       {
-        label: t("audit"),
+        label: t("Audits"),
         href: "https://drive.google.com/file/d/1CMmBkVVLX72DDJkogTf7esC80yrvbBqn/view?usp=drive_link",
    
       },

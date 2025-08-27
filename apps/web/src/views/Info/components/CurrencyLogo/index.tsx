@@ -22,8 +22,9 @@ export const CurrencyLogo: React.FC<
     token?: Token
     size?: string
     chainName?: MultiChainName
+    logoURI?: string
   }>
-> = ({ address, size = '24px', chainName = 'BSC', ...rest }) => {
+> = ({ address, size = '24px', chainName = 'BSC', logoURI, ...rest }) => {
   const src = useMemo(() => {
     return getTokenLogoURL(new Token(multiChainId[chainName], address as Address, 18, ''))
   }, [address, chainName])
@@ -33,7 +34,10 @@ export const CurrencyLogo: React.FC<
   const srcFromPCS = checkedSumAddress
     ? `https://tokens.pancakeswap.finance/images/${imagePath}${checkedSumAddress}.png`
     : ''
-  return <StyledLogo size={size} srcs={[srcFromPCS, src]} alt="token logo" useFilledIcon {...rest} />
+
+  // Build srcs with explicit logoURI first (if provided), then pancakeswap CDN, then generated src
+  const srcs = logoURI ? [logoURI, srcFromPCS, src] : [srcFromPCS, src]
+  return <StyledLogo size={size} srcs={srcs} alt="token logo" useFilledIcon {...rest} />
 }
 
 const DoubleCurrencyWrapper = styled.div`
@@ -49,6 +53,8 @@ interface DoubleCurrencyLogoProps {
   address1?: string
   size?: number
   chainName?: MultiChainName
+  logoURI0?: string
+  logoURI1?: string
 }
 
 export const DoubleCurrencyLogo: React.FC<React.PropsWithChildren<DoubleCurrencyLogoProps>> = ({
@@ -56,11 +62,17 @@ export const DoubleCurrencyLogo: React.FC<React.PropsWithChildren<DoubleCurrency
   address1,
   size = 16,
   chainName = 'BSC',
+  logoURI0,
+  logoURI1,
 }) => {
   return (
     <DoubleCurrencyWrapper>
-      {address0 && <CurrencyLogo address={address0} size={`${size.toString()}px`} chainName={chainName} />}
-      {address1 && <CurrencyLogo address={address1} size={`${size.toString()}px`} chainName={chainName} />}
+      {address0 && (
+        <CurrencyLogo address={address0} size={`${size.toString()}px`} chainName={chainName} logoURI={logoURI0} />
+      )}
+      {address1 && (
+        <CurrencyLogo address={address1} size={`${size.toString()}px`} chainName={chainName} logoURI={logoURI1} />
+      )}
     </DoubleCurrencyWrapper>
   )
 }

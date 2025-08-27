@@ -73,6 +73,8 @@ const DataRow = ({ poolData, index, chainPath }: { poolData: PoolData; index: nu
               address0={poolData.token0.address}
               address1={poolData.token1.address}
               chainName={chainName}
+              logoURI0={poolData.token0.logoURI}
+              logoURI1={poolData.token1.logoURI}
             />
             <Text ml="8px">
               {subgraphTokenSymbol[poolData.token0.address] ?? poolData.token0.symbol}/

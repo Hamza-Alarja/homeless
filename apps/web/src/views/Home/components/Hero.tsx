@@ -126,10 +126,10 @@ const Hero = () => {
         mt={[account && chainId === ChainId.BSC ? '280px' : '50px', null, 0]}
         id="homepage-hero"
       >
-          <Flex flex="1" flexDirection="column" >
-          <Heading 
-            scale="xl" 
-            color="secondary" 
+        <Flex flex="1" flexDirection="column">
+          <Heading
+            scale="xl"
+            color="secondary"
             mb="24px"
             style={{
               textTransform: 'uppercase',

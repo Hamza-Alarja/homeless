@@ -1,26 +1,13 @@
-import {
-  Heading,
-  Flex,
-  Text,
-  Skeleton,
-  ChartIcon,
-  CommunityIcon,
-  SwapIcon,
-  useMatchBreakpoints,
-} from '@pancakeswap/uikit'
+import { Flex, ChartIcon, CommunityIcon, SwapIcon, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
 import { formatLocalisedCompactNumber } from '@pancakeswap/utils/formatBalance'
 import useSWRImmutable from 'swr/immutable'
-import IconCard, { IconCardData } from '../IconCard'
-import StatCardContent from './StatCardContent'
-import GradientLogo from '../GradientLogoSvg'
-import { ASSET_CDN } from 'config/constants/endpoints'
-import Image from 'next/legacy/image'
+import { IconCardData } from '../IconCard'
+
 import styled from 'styled-components'
 import { ChainTags } from './ChainTags'
-import { MetricsCard } from './MetricsCard'
-import { style } from '@vanilla-extract/css'
+import AdvancedChainTags from './AdvancedChainTags'
 
 const ImageLayer = styled.div`
   position: absolute;
@@ -91,71 +78,39 @@ const Stats = () => {
 
   return (
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
-      {/*   <GradientLogo height="48px" width="48px" mb="24px" /> */}
-
-      <img
-        src="/images/homless.png"
-        alt="homlesswap"
-        width="150px"
-        height="150px"
-        style={{ margin: '0 0 30px 0' }} // 12px vertical, 0 horizontal
-      />
-      <p style={{ paddingBottom: '15px' }}>Homeless Wallet & NFT Coming Soon!</p>
-
-      <ChainTags />
-      {/*       <ImageLayer>
-        <BnbBallRocket>
-          <Image
-            src={`${ASSET_CDN}/web/landing/bnb-ball-rocket.png`}
-            alt="bnbBallRocket"
-            width={144}
-            height={168}
-            unoptimized
-          />
-        </BnbBallRocket>
-        <EthBallRocket>
-          <Image
-            src={`${ASSET_CDN}/web/landing/eth-ball-rocket.png`}
-            alt="ethBallRocket"
-            width={isXxl ? 116 : 70}
-            height={isXxl ? 230 : 140}
-            unoptimized
-          />
-        </EthBallRocket>
-        <AptosBallRocket>
-          <Image
-            src={`${ASSET_CDN}/web/landing/aptos-ball-rocket.png`}
-            alt="aptosBallRocket"
-            width={isXxl ? 84 : 53}
-            height={isXxl ? 101 : 64}
-            unoptimized
-          />
-        </AptosBallRocket>
-      </ImageLayer> */}
-
-      {/*   <Flex maxWidth="100%" flexDirection={['column', null, null, 'row']}>
-        <IconCard {...UsersCardData} mr={[null, null, null, '16px']} mb={['16px', null, null, '0']}>
-          <StatCardContent
-            headingText={"BnB"}
-            bodyText={""}
-            highlightColor={theme.colors.secondary}
-          />
-        </IconCard>
-        <IconCard {...TradesCardData} mr={[null, null, null, '16px']} mb={['16px', null, null, '0']}>
-          <StatCardContent
-            headingText={"Usdt"}
-            bodyText={""}
-            highlightColor={theme.colors.primary}
-          />
-        </IconCard>
-        <IconCard {...StakedCardData}>
-          <StatCardContent
-            headingText={"Btc"}
-            bodyText={""}
-            highlightColor={theme.colors.failure}
-          />
-        </IconCard>
-      </Flex> */}
+      <img src="/images/homless.png" alt="homlesswap" width="150px" height="150px" />
+      <p
+        style={{
+          padding: '16px 0',
+          fontSize: '20px',
+          fontWeight: '600',
+          textAlign: 'center',
+          background: 'linear-gradient(90deg, #FFD700, #FFA500, #FF8C00)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          letterSpacing: '1px',
+          animation: 'pulse 2s infinite',
+        }}
+      >
+        🚀 Homeless Wallet & NFT <span style={{ fontStyle: 'italic' }}>Coming Soon!</span>
+      </p>
+      <style jsx>{`
+        @keyframes pulse {
+          0% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.7;
+            transform: scale(1.05);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
+      <ChainTags /> <AdvancedChainTags />
     </Flex>
   )
 }

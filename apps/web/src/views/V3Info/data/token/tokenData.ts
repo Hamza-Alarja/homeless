@@ -185,6 +185,7 @@ export async function fetchedTokenDatas(
         priceUSD,
         priceUSDChange,
         priceUSDChangeWeek,
+        chainId: current && (current as any).chainId !== undefined ? (current as any).chainId : 1, // Default to 1 if not present
       }
 
       return accum

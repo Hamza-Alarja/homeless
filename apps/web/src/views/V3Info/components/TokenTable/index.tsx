@@ -83,7 +83,7 @@ const DataRow = ({ tokenData, index, chainPath }: { tokenData: TokenData; index:
         <Text>{index + 1}</Text>
         <Flex>
           <RowFixed>
-            <ResponsiveLogo address={tokenData.address} chainName={chainName} logoURI={tokenData.logoURI} />
+            <ResponsiveLogo address={tokenData.address} chainName={chainName} />
           </RowFixed>
 
           <Text style={{ marginLeft: '10px' }}>

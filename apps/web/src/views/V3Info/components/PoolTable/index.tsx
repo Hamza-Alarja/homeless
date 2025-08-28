@@ -9,13 +9,31 @@ import { subgraphTokenSymbol } from 'state/info/constant'
 import { DoubleCurrencyLogo } from 'views/Info/components/CurrencyLogo'
 import { Arrow, Break, ClickableColumnHeader, PageButtons, TableWrapper } from 'views/Info/components/InfoTables/shared'
 import { POOL_HIDE, v3InfoPath } from '../../constants'
-import { PoolData } from '../../types'
 import { feeTierPercent } from '../../utils'
 import { formatDollarAmount } from '../../utils/numbers'
 import { GreyBadge } from '../Card'
 import Loader, { LoadingRows } from '../Loader'
 import { RowFixed } from '../Row'
 import { SortButton, useSortFieldClassName } from '../SortButton'
+
+export interface Token {
+  name: string
+  symbol: string
+  address: string
+  decimals: number
+  derivedETH: number
+  logoURI?: string
+}
+
+export interface PoolData {
+  address: string
+  token0: Token
+  token1: Token
+  feeTier: number
+  tvlUSD: number
+  volumeUSD: number
+  volumeUSDWeek: number
+}
 
 const ResponsiveGrid = styled.div`
   display: grid;
@@ -25,7 +43,8 @@ const ResponsiveGrid = styled.div`
   grid-template-columns: 20px 3.5fr repeat(3, 1fr);
   padding: 0 24px;
   @media screen and (max-width: 900px) {
-    grid-template-columns: 20px 1.5fr repeat(2, 1fr);
+    grid-template-columns: 20px 1.5fr repeat(2, 1fr);import { PoolData } from '../../types'
+
     & :nth-child(3) {
       display: none;
     }

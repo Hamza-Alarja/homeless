@@ -192,7 +192,6 @@ const AdvancedChainTags = () => {
   return (
     <Container>
       <HeaderText
-        variant="h1"
         fontSize={isMobile ? '24px' : '32px'}
         style={{
           background: 'linear-gradient(90deg, #FFD700, #FFA500, #FF8C00)',

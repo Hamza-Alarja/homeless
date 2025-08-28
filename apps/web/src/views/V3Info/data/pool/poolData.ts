@@ -221,12 +221,14 @@ export async function fetchPoolDatas(
           liquidity: parseFloat(current.liquidity),
           sqrtPrice: parseFloat(current.sqrtPrice),
           tick: parseFloat(current.tick),
+          
           token0: {
             address: current.token0.id,
             name: current.token0.name,
             symbol: current.token0.symbol,
             decimals: parseInt(current.token0.decimals),
             derivedETH: parseFloat(current.token0.derivedETH),
+            logoURI: 'https://www.homelesswap.finance/images/homless.png', 
           },
           token1: {
             address: current.token1.id,
@@ -234,6 +236,7 @@ export async function fetchPoolDatas(
             symbol: current.token1.symbol,
             decimals: parseInt(current.token1.decimals),
             derivedETH: parseFloat(current.token1.derivedETH),
+            logoURI: 'https://www.homelesswap.finance/images/homless.png', 
           },
           token0Price: parseFloat(current.token0Price),
           token1Price: parseFloat(current.token1Price),

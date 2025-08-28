@@ -56,14 +56,14 @@ export type PriceChartEntry = {
 }
 
 export type TokenData = {
-  // token is in some pool on uniswap
   exists: boolean
 
-  // basic token info
   name: string
   symbol: string
   address: string
   decimals: number
+  logoURI?: string 
+  chainId: number
 
   // volume
   volumeUSD: number
@@ -103,6 +103,7 @@ export interface PoolData {
   feeTier: number
 
   token0: {
+    logoURI: string
     name: string
     symbol: string
     address: string
@@ -111,6 +112,7 @@ export interface PoolData {
   }
 
   token1: {
+    logoURI: string
     name: string
     symbol: string
     address: string

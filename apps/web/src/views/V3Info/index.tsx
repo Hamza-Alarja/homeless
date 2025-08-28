@@ -135,7 +135,11 @@ export default function Home() {
         ...Object.values(topTokensData)
           .filter((d) => !isUndefinedOrNull(d) && d.tvlUSD > 0)
           .filter((d) => d.address.toLowerCase() !== homelessTokenData.address.toLowerCase())
-          .map((d) => ({ ...d, chainId })), // Ensure chainId is set for all tokens
+          .map((d) => ({
+            ...d,
+            chainId,
+            logoURI: d.logoURI ?? 'https://www.homelesswap.finance/images/homless.png', 
+          })),
       )
     }
 

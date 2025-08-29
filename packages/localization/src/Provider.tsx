@@ -59,7 +59,7 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({ children }
           'hi-IN',
           'hu-HU',
           'id-ID',
-          'it-IT',
+          'it-IT',  
           'ja-JP',
           'ko-KR',
           'nl-NL',
@@ -76,14 +76,15 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({ children }
           'zh-CN',
           'zh-TW',
         ]
+        // ...existing code...
         for (const locale of supportedLocales) {
-          // استخدم require للاستيراد من المسار المحلي
-          // لاحظ أن هذا يعمل فقط في بيئة Node.js (سيرفر Next.js)
           let translations = {}
           try {
-            translations = require(`d:/homeless github/homeless/locales/${locale}.json`)
+            const res = await fetch(`/locales/${locale}.json`)
+            if (res.ok) {
+              translations = await res.json()
+            }
           } catch (e) {
-            // إذا لم يوجد الملف أو حدث خطأ، استخدم ترجمة فارغة
             translations = {}
           }
           languageMap.set(locale, translations)

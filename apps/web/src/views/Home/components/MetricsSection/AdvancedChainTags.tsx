@@ -154,32 +154,33 @@ const VisitButton = styled(Link)`
 // Filtered DEX Platform Data
 const dexPlatforms = [
   {
-    name: 'PancakeSwap',
-    description: 'Trade, earn, and win crypto on the most popular decentralized platform in the world.',
-    url: 'https://pancakeswap.finance',
-    logo: 'https://assets.coingecko.com/coins/images/12632/standard/pancakeswap-cake-logo_%281%29.png?1696512440',
-    color: '#D1884F',
+    name: 'PinkSale',
+    description: 'The launchpad protocol for everyone to create and launch their own tokens and projects.',
+    url: 'https://www.pinksale.finance',
+    logo: 'https://www.pinksale.finance/_next/static/media/ic-pinksale.61500ae2.svg',
+    color: '#FF69B4',
   },
   {
-    name: 'Uniswap',
-    description: 'Swap, earn, and build on the leading decentralized crypto trading protocol.',
-    url: 'https://app.uniswap.org',
-    logo: 'https://assets.coingecko.com/coins/images/12504/standard/uniswap-logo.png?1720676669',
-    color: '#FF007A',
+    name: 'CoinGecko',
+    description:
+      'Get the latest crypto prices, market data, and insights from the world’s most comprehensive crypto tracker.',
+    url: 'https://www.coingecko.com',
+    logo: 'https://www.coingecko.com/favicon-96x96.png',
+    color: '#4CAF50',
   },
   {
-    name: 'SushiSwap',
-    description: 'Swap, earn, stack yields, lend, borrow, leverage all on one decentralized platform.',
-    url: 'https://www.sushi.com/swap',
-    logo: 'https://assets.coingecko.com/coins/images/12271/standard/512x512_Logo_no_chop.png?1696512101',
-    color: '#FA52A0',
+    name: 'GemPad',
+    description: 'The most secure and transparent platform for token presales and launches.',
+    url: 'https://www.gempad.app',
+    logo: 'https://www.gempad.app/logo/logo.svg',
+    color: '#6A5ACD',
   },
   {
-    name: 'DxSale',
-    description: 'Discover the next generation of DeFi with decentralized exchange and token launches.',
-    url: 'https://www.dx.app',
-    logo: 'https://www.dx.app/logo.svg',
-    color: '#6E89AE',
+    name: 'Dextools',
+    description: 'Track crypto charts, analytics, and live data for all decentralized exchanges.',
+    url: 'https://www.dextools.io',
+    logo: 'https://assets.coingecko.com/coins/images/11603/standard/dext.png?1696511498',
+    color: '#1E90FF',
   },
 ]
 

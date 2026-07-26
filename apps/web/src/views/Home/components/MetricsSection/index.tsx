@@ -7,7 +7,6 @@ import { IconCardData } from '../IconCard'
 
 import styled from 'styled-components'
 import { ChainTags } from './ChainTags'
-import AdvancedChainTags from './AdvancedChainTags'
 
 const ImageLayer = styled.div`
   position: absolute;
@@ -110,7 +109,7 @@ const Stats = () => {
           }
         }
       `}</style>
-      <ChainTags /> <AdvancedChainTags />
+      <ChainTags /> 
     </Flex>
   )
 }

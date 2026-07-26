@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { PageSection } from '@pancakeswap/uikit'
+  import { PageSection } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
 import useTheme from 'hooks/useTheme'
 import Container from 'components/Layout/Container'
@@ -45,18 +45,7 @@ const UserBannerWrapper = styled(Container)`
   }
 `
 
-
-
-
-
-
 const Home: React.FC<React.PropsWithChildren> = () => {
-
-
-
-
-
-
   const { theme } = useTheme()
   const { address: account } = useAccount()
   const { chainId } = useActiveChainId()
@@ -108,7 +97,7 @@ const Home: React.FC<React.PropsWithChildren> = () => {
             <UserBanner />
           </UserBannerWrapper>
         )}
-       {/*  <MultipleBanner /> */}
+        {/*  <MultipleBanner /> */}
         <Hero />
       </StyledHeroSection>
       <PageSection
@@ -149,9 +138,9 @@ const Home: React.FC<React.PropsWithChildren> = () => {
           </InnerWedgeWrapper>
         </OuterWedgeWrapper>
         <SalesSection {...earnSectionData(t)} />
-       {/*  <FarmsPoolsRow /> */}
+        {/*  <FarmsPoolsRow /> */}
       </PageSection>
-    {/*   <PageSection
+      {/*   <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         containerProps={{
           id: 'home-3',
@@ -162,7 +151,6 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         <WinSection />
       </PageSection> */}
 
-
       <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
         containerProps={{
@@ -171,13 +159,8 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         index={2}
         hasCurvedDivider={false}
       >
-       
-        <CryptoTable  />
-     
+        <CryptoTable />
       </PageSection>
-
-
-
 
       <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
@@ -187,21 +170,10 @@ const Home: React.FC<React.PropsWithChildren> = () => {
       >
         <SalesSection {...cakeSectionData(t)} />
         <CakeDataRow />
-        <Chatbot/>
+        <Chatbot />
       </PageSection>
 
-
-
-      <PageSection
-        innerProps={{ style: HomeSectionContainerStyles }}
-        background="linear-gradient(180deg, #7645D9 0%, #5121B1 100%)"
-        index={2}
-        hasCurvedDivider={false}
-      >
-       
-        <Footer />
-      </PageSection>
-    
+      <Footer />
     </>
   )
 }

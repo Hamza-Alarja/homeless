@@ -43,11 +43,13 @@ describe('utils', () => {
     })
 
     it('returns the checksummed address', () => {
+      // eslint-disable-next-line address/addr-type
       expect(isAddress('0xf164fc0ec4e93095b804a4795bbe1e041497b92a')).toBe('0xf164fC0Ec4E93095b804a4795bBe1e041497b92a')
       expect(isAddress('0xf164fC0Ec4E93095b804a4795bBe1e041497b92a')).toBe('0xf164fC0Ec4E93095b804a4795bBe1e041497b92a')
     })
 
     it('succeeds even without prefix', () => {
+      // eslint-disable-next-line address/addr-type
       expect(isAddress('f164fc0ec4e93095b804a4795bbe1e041497b92a')).toBe('0xf164fC0Ec4E93095b804a4795bBe1e041497b92a')
     })
     it('fails if too long', () => {

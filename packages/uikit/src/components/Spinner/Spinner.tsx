@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { SpinnerProps } from "./types";
-import { Box } from "../Box";
+// import { Box } from "../Box";
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -19,9 +19,18 @@ const SpinnerContainer = styled.div<{ size: number }>`
 
 const Spinner: React.FC<React.PropsWithChildren<SpinnerProps>> = ({ size = 128 }) => {
   return (
-    <Box width={size} height={size} position="relative" display="flex" alignItems="center" justifyContent="center">
+    <div
+      style={{
+        width: size,
+        height: size,
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <SpinnerContainer size={size} />
-    </Box>
+    </div>
   );
 };
 

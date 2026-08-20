@@ -82,11 +82,12 @@ export const Updater: React.FC<{ chainId: number }> = ({ chainId }) => {
           }
           merge(fetchedTransactions.current, { [transaction.hash]: transactions[transaction.hash] })
         }
-        retry(getTransaction, {
+        const check = retry(getTransaction, {
           n: 10,
           minWait: 5000,
           maxWait: 10000,
         })
+        check.promise.catch((err) => console.error('Transaction check failed', err))
       },
     )
   }, [chainId, provider, transactions, dispatch, toastSuccess, toastError, t])

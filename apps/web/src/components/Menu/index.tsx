@@ -43,9 +43,21 @@ const Menu = (props) => {
     return () => setTheme(isDark ? 'light' : 'dark')
   }, [setTheme, isDark])
 
+  const isTradeRoute = pathname.startsWith('/swap') || pathname.startsWith('/limit-orders')
+  const isLiquidityRoute =
+    pathname.startsWith('/liquidity') ||
+    pathname.startsWith('/add') ||
+    pathname.startsWith('/increase') ||
+    pathname.startsWith('/remove') ||
+    pathname.startsWith('/v2/add') ||
+    pathname.startsWith('/v2/remove') ||
+    pathname.startsWith('/v2/pair')
+
+  const mobileBottomNavActiveItem = isTradeRoute ? '/swap' : isLiquidityRoute ? '/liquidity' : undefined
+
   const getFooterLinks = useMemo(() => {
     return footerLinks(t)
-  }, [t])
+  }, [t, currentLanguage.code])
 
   return (
     <>
@@ -59,7 +71,6 @@ const Menu = (props) => {
           </>
         }
         chainId={chainId}
-       
         isDark={isDark}
         toggleTheme={toggleTheme}
         currentLang={currentLanguage.code}
@@ -71,7 +82,7 @@ const Menu = (props) => {
         footerLinks={getFooterLinks}
         activeItem={activeMenuItem?.href}
         activeSubItem={activeSubMenuItem?.href}
-        buyCakeLabel={t('Buy Homeleswap')}
+        buyCakeLabel={t('Buy Homeless token')}
         buyCakeLink="/swap?outputCurrency=0x299F467665e1870A705099AA5a0F11520df026bC&chainId=56"
         {...props}
       />

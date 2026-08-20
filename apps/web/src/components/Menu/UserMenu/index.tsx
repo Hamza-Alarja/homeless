@@ -56,7 +56,7 @@ const UserMenuItems = () => {
         {t('Recent Transactions')}
         {hasPendingTransactions && <RefreshIcon spin />}
       </UserMenuItem>
-    {/*   <UserMenuDivider />
+      {/*   <UserMenuDivider />
       <NextLink href={`/profile/${account?.toLowerCase()}`} passHref>
         <UserMenuItem disabled={isWrongNetwork || chainId !== ChainId.BSC}>{t('Your NFTs')}</UserMenuItem>
       </NextLink>
@@ -80,7 +80,9 @@ const UserMenuItems = () => {
 const UserMenu = () => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
-  const { domainName, avatar } = useDomainNameForAddress(account)
+  // Disable eager UNS/domain fetching in the global header to avoid unnecessary Ethereum RPC calls on page load.
+  // The wallet modal/menus that need domains still call this hook separately (they can fetch when opened).
+  const { domainName, avatar } = useDomainNameForAddress(account, false)
   const { isWrongNetwork } = useActiveChainId()
   const { hasPendingTransactions, pendingNumber } = usePendingTransactions()
   const { profile } = useProfile()

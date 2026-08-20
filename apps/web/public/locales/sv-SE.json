@@ -899,7 +899,7 @@
   "Will you join them?": "Vill du bli en av dem?",
   "$%tvl% staked": "$%tvl% har satsats",
   "The moon is made of pancakes.": "Månen består av pannkakor.",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Handla, tjäna och vinn kryptopengar på galaxens populäraste decentraliserade plattform.",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Byt krypto. Tillhandahåll likviditet. Behåll kontrollen.",
   "Lunar bunny": "Månkaninen",
   "Total supply": "Total tillförsel",
   "Burned to date": "Bränt hittills",
@@ -1547,7 +1547,6 @@
   "Highest": "Högsta",
   "Connect": "Anslut",
   "Play Now": "Spela nu",
-  "Litepaper": "Litepaper",
   "Win $%prize% in Lottery": "Vinn %prize% dollar i lotteriet",
   "Approve was called unnecessarily": "Godkännande efterfrågades i onödan",
   "No token": "Ingen token",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Homeless token är hjärtat i Homelesswap-ekosystemet. Köp det, vinn det, farma det, spendera det, stakea det... du kan till och med rösta med det!",
   "Explore Other Platforms": "Utforska andra plattformar",
   "Visit Website": "Besök webbplatsen",
-  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap gör det enkelt att få din kryptovaluta att arbeta för dig."
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap gör det enkelt att få din kryptovaluta att arbeta för dig.",
+  "White paper": "Vitbok"
 }

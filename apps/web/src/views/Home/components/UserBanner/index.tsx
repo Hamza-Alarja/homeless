@@ -18,12 +18,17 @@ const UserBanner = () => {
   return (
     <StyledCard p={['16px', null, null, '24px']}>
       <Flex alignItems="center" justifyContent="center" flexDirection={['column', null, null, 'row']}>
-        <Flex flex="1" mr={[null, null, null, '32px']}>
+        <Flex flex="1">
           <UserDetail />
         </Flex>
+        {/* TEMP DISABLED:
+            HarvestCard depends on PancakeSwap Farm/MasterChef data.
+            Keep for future Homelesswap-native Earn system. */}
+        {/*
         <Flex flex="1" width={['100%', null, 'auto']}>
           <HarvestCard />
         </Flex>
+        */}
       </Flex>
     </StyledCard>
   )

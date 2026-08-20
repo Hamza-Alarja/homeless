@@ -2,12 +2,16 @@ import styled from "styled-components";
 import { Text } from "../Text";
 
 export const StyledBottomNavItem = styled.button`
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
   border: 0;
   background: transparent;
   cursor: pointer;
   height: 44px;
   padding: 4px 12px;
+  min-width: 0;
   &:hover {
     border-radius: 16px;
   }

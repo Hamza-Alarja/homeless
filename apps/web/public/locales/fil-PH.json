@@ -899,7 +899,7 @@
   "Will you join them?": "Sasali ka ba sa kanila?",
   "$%tvl% staked": "$%tvl% na-stake",
   "The moon is made of pancakes.": "Ang buwan ay gawa sa mga pancake.",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Mag-trade, kumita, at manalo ng crypto sa pinakatanyag na desentralisadong platform sa sang-kalawakan.",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "I-swap ang crypto. Magbigay ng liquidity. Manatili sa kontrol.",
   "Lunar bunny": "Lunar na bunny",
   "Total supply": "Kabuuang supply",
   "Burned to date": "Na-burn sa ngayon",
@@ -1547,7 +1547,6 @@
   "Highest": "Pinakamataas",
   "Connect": "Kumonekta",
   "Play Now": "Maglaro Na",
-  "Litepaper": "Litepaper",
   "Win $%prize% in Lottery": "Manalo ng $%prize% sa Loterya",
   "Approve was called unnecessarily": "Hindi kinakailangang maaprubahan",
   "No token": "Walang token",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Ang Homeless token ay nasa puso ng Homelesswap ecosystem. Bilhin ito, manalo dito, i-farm ito, gastusin ito, i-stake ito... kahit maaaring bumoto gamit ito!",
   "Explore Other Platforms": "Tuklasin ang iba pang mga platform",
   "Visit Website": "Bisitahin ang website",
-  "Homelesswap makes it easy to make your crypto work for you.": "Mas pinadali ng Homelesswap ang paggawa para sa iyo ng iyong crypto."
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Mas pinadali ng Homelesswap ang paggawa para sa iyo ng iyong crypto.",
+  "White paper": "White paper"
 }

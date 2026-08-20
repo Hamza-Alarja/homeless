@@ -899,7 +899,7 @@
   "Will you join them?": "您会加入他们吗？",
   "$%tvl% staked": "已质押 %tvl%美元",
   "The moon is made of pancakes.": "Pancake 汇成明月",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "在全银河系中最受欢迎的去中心化平台上交易、赚取和赢得加密货币。",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "交换加密货币。提供流动性。保持控制。",
   "Lunar bunny": "月兔",
   "Total supply": "总供应量",
   "Burned to date": "迄今焚毁量",
@@ -1547,7 +1547,6 @@
   "Highest": "最高",
   "Connect": "连接",
   "Play Now": "立即参与",
-  "Litepaper": "简版白皮书",
   "Win $%prize% in Lottery": "在彩票中赢得 %prize% 美元",
   "Approve was called unnecessarily": "没有必要进行 Approve 操作",
   "No token": "无代币",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Homeless token 位于 Homelesswap 生态系统的核心。购买它、赢取它、在农场中获得它、花费它、质押它……你甚至可以用它进行投票！",
   "Explore Other Platforms": "探索其他平台",
   "Visit Website": "访问网站",
-  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap 让您轻松利用加密货币创造收益。"
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap 让您轻松利用加密货币创造收益。",
+  "White paper": "白皮书"
 }

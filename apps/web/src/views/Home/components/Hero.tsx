@@ -94,6 +94,8 @@ const Hero = () => {
   const { address: account } = useAccount()
   const { chainId } = useActiveChainId()
 
+  const heroTagline = t('Swap crypto. Provide liquidity. Stay in control.' as any)
+
   return (
     <>
       <style jsx global>
@@ -134,19 +136,21 @@ const Hero = () => {
             style={{
               textTransform: 'uppercase',
               fontWeight: '900',
-              color: '#FFD700',
-              textShadow: '0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3)',
-              background: 'linear-gradient(135deg, #FFD700, #FFED4A)',
+              letterSpacing: '0.14em',
+              color: '#5D57F7',
+              background: 'linear-gradient(135deg, #F4F3FF 0%, #A8A2FF 18%, #5D57F7 52%, #D6D1FF 100%)',
+              backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              letterSpacing: '0.05em',
+              WebkitTextStroke: '0.5px rgba(255,255,255,0.14)',
+              textShadow: '0 0 28px rgba(93, 87, 247, 0.28), 0 12px 24px rgba(93, 87, 247, 0.18)',
+              filter: 'drop-shadow(0 10px 18px rgba(93, 87, 247, 0.16))',
             }}
           >
             {t('homelesswap')}
           </Heading>
           <Heading scale="md" mb="24px">
-            {t('Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.')}
+            {heroTagline}
           </Heading>
           <Flex>
             {!account && <ConnectWalletButton mr="8px" />}

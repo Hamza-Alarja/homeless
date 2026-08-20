@@ -899,7 +899,7 @@
   "Will you join them?": "அவர்களுடன் சேர்வீர்களா?",
   "$%tvl% staked": "$%tvl% ஸ்டேக் செய்தது",
   "The moon is made of pancakes.": "நிலா pancakeகுகளால் ஆனது.",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "விண்மீன் மண்டலத்தில் மிகவும் பிரபலமான பரவலாக்கப்பட்ட தளத்தில் க்ரிப்டோவை டிரேட் செய்யுங்கள், ஈட்டுங்கள் மற்றும் வெல்லுங்கள்.",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "கிரிப்டோவை ஸ்வாப் செய்யுங்கள். லிக்விடிட்டி வழங்குங்கள். கட்டுப்பாட்டை தக்கவைத்துக் கொள்ளுங்கள்.",
   "Lunar bunny": "நிலா முயல்",
   "Total supply": "மொத்த சப்ளை",
   "Burned to date": "இன்று வரை செலவழித்தது",
@@ -1547,7 +1547,6 @@
   "Highest": "அதிகபட்சம்",
   "Connect": "இணைத்திடு",
   "Play Now": "இப்போது விளையாடு",
-  "Litepaper": "லைட்பேப்பர்",
   "Win $%prize% in Lottery": "லாட்டரியில் $%prize% வெல்க",
   "Approve was called unnecessarily": "அங்கீகரிப்பு தேவையில்லாமல் அழைக்கப்பட்டது",
   "No token": "டோக்கன் இல்லை",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Homeless token என்பது Homelesswap சூழலியல் அமைப்பின் இதயத்தில் உள்ளது. அதை வாங்குங்கள், வெல்லுங்கள், ஃபார்மிங் செய்யுங்கள், செலவழியுங்கள், ஸ்டேக் செய்யுங்கள்... அதுடன் நீங்கள் வாக்களிக்க கூட முடியும்!",
   "Explore Other Platforms": "இன்னும் சில தளங்களை ஆராயுங்கள்",
   "Visit Website": "இணையதளத்தை பார்வையிடவும்",
-  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap உங்கள் கிரிப்டோவை உங்களுக்கு வேலை செய்ய எளிதாக மாற்றுகிறது."
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap உங்கள் கிரிப்டோவை உங்களுக்கு வேலை செய்ய எளிதாக மாற்றுகிறது.",
+  "White paper": "வெள்ளைத் தாள்"
 }

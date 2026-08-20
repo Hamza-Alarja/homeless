@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/nextjs'
 import { useTranslation } from '@pancakeswap/localization'
 import { Currency, Price, Token } from '@pancakeswap/sdk'
 import { FeeAmount } from '@pancakeswap/v3-sdk'
-import { AutoColumn, BunnyKnownPlaceholder, ChartDisableIcon, LineGraphIcon } from '@pancakeswap/uikit'
+import { AutoColumn, ChartDisableIcon, LineGraphIcon } from '@pancakeswap/uikit'
 import { format } from 'd3'
 import { saturate } from 'polished'
 import { useCallback, useMemo } from 'react'
@@ -132,7 +132,10 @@ export default function LiquidityChartRangeInput({
   return (
     <AutoColumn gap="md" style={{ minHeight: '200px', width: '100%', marginBottom: '16px' }}>
       {isUninitialized ? (
-        <InfoBox message={t('Your position will appear here.')} icon={<BunnyKnownPlaceholder />} />
+        <InfoBox
+          message={t('Your position will appear here.')}
+          icon={<img src="/images/homless.png" alt="Homelesswap" width={80} height={80} />}
+        />
       ) : isLoading ? (
         <InfoBox icon={<Loader size="40px" stroke={theme.colors.text} />} />
       ) : error ? (

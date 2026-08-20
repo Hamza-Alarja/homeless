@@ -50,6 +50,7 @@ export function useSwapBestTrade({ maxHops }: Options = {}) {
     v3Swap,
     stableSwap,
     type: 'auto',
+    autoRevalidate: false,
   })
 
   return {
@@ -57,7 +58,7 @@ export function useSwapBestTrade({ maxHops }: Options = {}) {
     syncing,
     isStale,
     error,
-    isLoading: useDeferredValue(isLoading || (typedValue && !trade && !error)),
+    isLoading: useDeferredValue(isLoading || (amount && !trade && !error)),
     trade: typedValue ? trade : null,
   }
 }

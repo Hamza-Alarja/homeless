@@ -15,12 +15,11 @@ import { logSwap, logTx } from 'utils/log'
 import { isUserRejected } from 'utils/sentry'
 import { transactionErrorToUserReadableMessage } from 'utils/transactionErrorToUserReadableMessage'
 import { viemClients } from 'utils/viem'
-import {encodeFunctionData} from 'viem'
 import { Address, Hex, hexToBigInt } from 'viem'
 import { useSendTransaction } from 'wagmi'
 import { isZero } from '../utils/isZero'
-import { json } from 'd3'
-import {swapperABI,SWAP_Commissions} from "../../../../../../../apis/routing/src/constants"
+
+// legacy swapper wrapper removed from execution path; we use SmartRouter calldata instead
 interface SwapCall {
   address: Address
   calldata: Hex
@@ -63,98 +62,26 @@ export default function useSendSwapTransaction(
     if (!trade || !sendTransactionAsync || !account || !chainId || !publicClient) {
       return { callback: null }
     }
-    let isToken_Input = JSON.parse(JSON.stringify(trade.routes[0].inputAmount.currency)).isToken;
-    let token_Input = JSON.parse(JSON.stringify(trade.routes[0].inputAmount.currency)).address;
-   
-    let isToke_Output = JSON.parse(JSON.stringify(trade.routes[0].outputAmount.currency)).isToken;
-
-    let token_Output = JSON.parse(JSON.stringify(trade.routes[0].outputAmount.currency)).address;
-    let amountIN = trade.routes[0].inputAmount.numerator;
-    let _calldata ;
-    console.log(allowedSlippage);
-            let SWAP_Commission = SWAP_Commissions[chainId];
-            console.log(SWAP_Commission);
-            //0x0Ad3DaE92e136D363864CCd10c794B36922ccEa0
-           if (isToken_Input == false && isToke_Output == true)
-            {
-              console.log(0);
-            const functionName = 'swapETHForTokens';
-                const parameters = [
-                  token_Output, // Replace with your token address
-                  allowedSlippage.toString(), // Amount in wei (10 tokens with 18 decimals)
-                ];
-//0xfC79317CC567e28b78943c456093A1e8475dCE5E
-// // Generate calldata
-            _calldata = encodeFunctionData({
-              abi: swapperABI ,
-              functionName: functionName,
-              args: parameters
-            })
-            }
-            else if (isToken_Input == true  && isToke_Output == true)
-              {
-                console.log(1);
-                const functionName = 'swapTokensForTokens';
-                const parameters = [
-                  token_Input,
-                  token_Output, // Replace with your token address
-                  amountIN,
-                  allowedSlippage.toString(), // Amount in wei (10 tokens with 18 decimals)
-                ];
-//0xfC79317CC567e28b78943c456093A1e8475dCE5E
-// // Generate calldata
-            _calldata = encodeFunctionData({
-              abi: swapperABI ,
-              functionName: functionName,
-              args: parameters
-            })
-              }
-              else if (isToken_Input == true  && isToke_Output == false)
-                {
-                  console.log(2);
-                  const functionName = 'swapTokensForETH';
-                  const parameters = [
-                    token_Input,
-                    
-                    amountIN,
-                    allowedSlippage.toString(), // Amount in wei (10 tokens with 18 decimals)
-                  ];
-  //0xfC79317CC567e28b78943c456093A1e8475dCE5E
-  // // Generate calldata
-              _calldata = encodeFunctionData({
-                abi: swapperABI ,
-                functionName: functionName,
-                args: parameters
-              })
-                }
+    
     return {
       callback: async function onSwap(): Promise<SendTransactionResult> {
         const estimatedCalls: SwapCallEstimate[] = await Promise.all(
           swapCalls.map((call) => {
             const { address, calldata, value } = call
-            console.log(address,"aaaaaaaaaa");
-            const tx =
-              !value || isZero(value)
-                ? { account, to: SWAP_Commission, data: _calldata, value: 0n }
-                : {
-                    account,
-                    to: SWAP_Commission,
-                    data: _calldata,
-                    value: hexToBigInt(value),
-                  }
-                  console.log(tx)
+            const _tx = !value || isZero(value) ? { account, to: address, data: calldata, value: 0n } : { account, to: address, data: calldata, value: hexToBigInt(value) }
+
+            // estimate gas for the actual call target coming from swapCalls
+            // removed temporary debug logs
 
             return publicClient
-              .estimateGas(tx)
+              .estimateGas({ account, to: address, data: calldata, value: value && !isZero(value) ? hexToBigInt(value) : 0n })
               .then((gasEstimate) => {
-                console.log(gasEstimate);
                 return {
                   call,
                   gasEstimate,
                 }
               })
               .catch((gasError) => {
-                console.log(gasError)
                 console.debug('Gas estimate failed, trying eth_call to extract error', call)
                 return { call, error: transactionErrorToUserReadableMessage(gasError, t) }
               })
@@ -181,12 +108,13 @@ export default function useSendSwapTransaction(
         const {
           call: { address, calldata, value },
         } = bestCallOption
-        
+
+        // Execute the exact SmartRouter calldata/address/value
         return sendTransactionAsync({
           account,
           chainId,
-          to: SWAP_Commission,
-          data: _calldata,
+          to: address,
+          data: calldata,
           value: value && !isZero(value) ? hexToBigInt(value) : 0n,
           ...('gasEstimate' in bestCallOption ? { gas: calculateGasMargin(bestCallOption.gasEstimate) } : {}),
         })

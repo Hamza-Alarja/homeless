@@ -2,8 +2,9 @@ import { MaxUint256 } from '@pancakeswap/swap-sdk-core'
 import { useTranslation } from '@pancakeswap/localization'
 import { Currency, CurrencyAmount, ERC20Token, Trade, TradeType } from '@pancakeswap/sdk'
 import { useToast } from '@pancakeswap/uikit'
-import { useAccount, Address,useNetwork } from 'wagmi'
-import { V2_ROUTER_ADDRESS,SwapperAddress } from 'config/constants/exchange'
+import { useAccount, Address } from 'wagmi'
+import { SwapperAddress } from 'config/constants/exchange'
+import { SMART_ROUTER_ADDRESSES } from '@pancakeswap/smart-router/evm'
 import { useCallback, useMemo } from 'react'
 import { isUserRejected, logError } from 'utils/sentry'
 import { SendTransactionResult } from 'wagmi/actions'
@@ -15,7 +16,6 @@ import useGelatoLimitOrdersLib from './limitOrders/useGelatoLimitOrdersLib'
 import { useCallWithGasPrice } from './useCallWithGasPrice'
 import { useTokenContract } from './useContract'
 import useTokenAllowance from './useTokenAllowance'
-import { chainIdToNetwork } from 'views/BuyCrypto/constants'
 import { SWAP_Commissions } from '../../../../apis/routing/src/constants'
 
 export enum ApprovalState {
@@ -43,43 +43,33 @@ export function useApproveCallback(
   const { toastError } = useToast()
   const token = amountToApprove?.currency?.isToken ? amountToApprove.currency : undefined
   const tokenContract = useTokenContract(token?.address)
-  const currentAllowance = useTokenAllowance(token, account ?? undefined, SWAP_Commissions[tokenContract?.chain?.id])
-  const pendingApproval = useHasPendingApproval(token?.address, SWAP_Commissions[tokenContract?.chain?.id])
+  const chainKey = tokenContract?.chain?.id
+  const defaultSpender = chainKey ? SMART_ROUTER_ADDRESSES[chainKey] ?? SwapperAddress[chainKey] ?? SWAP_Commissions[chainKey] : undefined
+  const finalSpender = spender ?? defaultSpender
+
+  const currentAllowance = useTokenAllowance(token, account ?? undefined, finalSpender)
+  const pendingApproval = useHasPendingApproval(token?.address, finalSpender)
 
 
   // check the current approval status
   const approvalState: ApprovalState = useMemo(() => {
-
-    if(tokenContract)
-      {
-    const  _spender = SWAP_Commissions[tokenContract.chain?.id]
-      
-    spender = _spender;
-      }
-    if (!amountToApprove || !spender) return ApprovalState.UNKNOWN
+    // do not override a provided spender; use finalSpender determined above
+    if (!amountToApprove || !finalSpender) return ApprovalState.UNKNOWN
     if (amountToApprove.currency?.isNative) return ApprovalState.APPROVED
     // we might not have enough data to know whether or not we need to approve
     if (!currentAllowance) return ApprovalState.UNKNOWN
-    console.log(spender," zzzzzzzz")
-    console.log(currentAllowance," zzzzzzz")
-    console.log(amountToApprove," toapp")
     // amountToApprove will be defined if currentAllowance is
     return currentAllowance.lessThan(amountToApprove)
       ? pendingApproval
         ? ApprovalState.PENDING
         : ApprovalState.NOT_APPROVED
       : ApprovalState.APPROVED
-  }, [amountToApprove, currentAllowance, pendingApproval, spender])
+  }, [amountToApprove, currentAllowance, pendingApproval, finalSpender])
 
   const addTransaction = useTransactionAdder()
 
   const approve = useCallback(async (): Promise<SendTransactionResult> => {
-    if(tokenContract)
-      {
-    const  _spender = SWAP_Commissions[tokenContract.chain.id]
-      
-    spender = _spender;
-      }
+    // do not override a provided spender; use finalSpender determined above
     if (approvalState !== ApprovalState.NOT_APPROVED) {
       toastError(t('Error'), t('Approve was called unnecessarily'))
       console.error('approve was called unnecessarily')
@@ -88,7 +78,7 @@ export function useApproveCallback(
     if (!token) {
       // toastError(t('Error'), t('No token'))
       console.error('no token')
-      // return undefined
+      return undefined
     }
 
     if (!tokenContract) {
@@ -104,10 +94,8 @@ export function useApproveCallback(
     }
 
     let useExact = false
-    // console.log(tokenContract.chain);
-    console.log(spender);
     const estimatedGas = await tokenContract.estimateGas
-      .approve([spender as Address, MaxUint256], {
+      .approve([finalSpender as Address, MaxUint256], {
         account: tokenContract.account,
       })
       .catch(() => {
@@ -115,7 +103,7 @@ export function useApproveCallback(
         // general fallback for tokens who restrict approval amounts
         useExact = true
         return tokenContract.estimateGas
-          .approve([spender as Address, amountToApprove?.quotient ?? targetAmount ?? MaxUint256], {
+          .approve([finalSpender as Address, amountToApprove?.quotient ?? targetAmount ?? MaxUint256], {
             account: tokenContract.account,
           })
           .catch((e) => {
@@ -130,7 +118,7 @@ export function useApproveCallback(
     return callWithGasPrice(
       tokenContract,
       'approve' as const,
-      [spender as Address, useExact ? amountToApprove?.quotient ?? targetAmount ?? MaxUint256 : MaxUint256],
+      [finalSpender as Address, useExact ? amountToApprove?.quotient ?? targetAmount ?? MaxUint256 : MaxUint256],
       {
         gas: calculateGasMargin(estimatedGas),
       },
@@ -140,7 +128,7 @@ export function useApproveCallback(
           addTransaction(response, {
             summary: `Approve ${amountToApprove.currency.symbol}`,
             translatableSummary: { text: 'Approve %symbol%', data: { symbol: amountToApprove.currency.symbol } },
-            approval: { tokenAddress: token.address, spender },
+            approval: { tokenAddress: token.address, spender: finalSpender },
             type: 'approve',
           })
         }
@@ -159,7 +147,7 @@ export function useApproveCallback(
     token,
     tokenContract,
     amountToApprove,
-    spender,
+    finalSpender,
     callWithGasPrice,
     targetAmount,
     toastError,
@@ -181,8 +169,10 @@ export function useApproveCallbackFromTrade(
     () => (trade ? computeSlippageAdjustedAmounts(trade, allowedSlippage)[Field.INPUT] : undefined),
     [trade, allowedSlippage],
   )
-  
-  return useApproveCallback(amountToApprove, SwapperAddress[chainId])
+  // Use SmartRouter address as the spender for swap approvals so approvals match execution path
+  const spender = chainId ? SMART_ROUTER_ADDRESSES[chainId] ?? SwapperAddress[chainId] : SwapperAddress[chainId]
+
+  return useApproveCallback(amountToApprove, spender)
 }
 
 export function useApproveCallbackFromAmount({
@@ -199,19 +189,15 @@ export function useApproveCallbackFromAmount({
   addToTransaction?: boolean
 }) {
   const tokenContract = useTokenContract(token?.address)
-
-  if(tokenContract)
-    {
-  const  _spender = SWAP_Commissions[tokenContract.chain.id]
-    
-  spender = _spender;
-    }
+  const chainKey = tokenContract?.chain?.id
+  const defaultSpender = chainKey ? SMART_ROUTER_ADDRESSES[chainKey] ?? SwapperAddress[chainKey] ?? SWAP_Commissions[chainKey] : undefined
+  const selectedSpender = spender ?? defaultSpender
   const amountToApprove = useMemo(() => {
     if (!minAmount || !token) return undefined
     return CurrencyAmount.fromRawAmount(token, minAmount)
   }, [minAmount, token])
-console.log("xxxx")
-  return useApproveCallback(amountToApprove, spender, {
+
+  return useApproveCallback(amountToApprove, selectedSpender, {
     addToTransaction,
     targetAmount,
   })

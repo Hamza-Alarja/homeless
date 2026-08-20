@@ -1,45 +1,25 @@
 import { SUPPORT_FARMS } from 'config/constants/supportChains'
-import { useContext } from 'react'
-import { usePriceCakeUSD } from 'state/farms/hooks'
-import { FarmsV3Context, FarmsV3PageLayout } from 'views/Farms'
-import FarmCard from 'views/Farms/components/FarmCard/FarmCard'
-import { FarmV3Card } from 'views/Farms/components/FarmCard/V3/FarmV3Card'
-import { getDisplayApr } from 'views/Farms/components/getDisplayApr'
-import ProxyFarmContainer from 'views/Farms/components/YieldBooster/components/ProxyFarmContainer'
-import { useAccount } from 'wagmi'
-import { ProxyFarmCardContainer } from '.'
+import React from 'react'
+
+/*
+  TEMP DISABLED: Farms history is disabled while Farms UI is intentionally offline.
+
+  The original implementation used FarmsV3Context, FarmCard, FarmV3Card, ProxyFarmContainer,
+  and various farm hooks which are intentionally not mounted during this temporary state.
+
+  If you need to restore the original page, the prior implementation can be found in the
+  git history or replaced from the earlier commit where the Farms page was enabled.
+*/
 
 const FarmsHistoryPage = () => {
-  const { address: account } = useAccount()
-  const { chosenFarmsMemoized } = useContext(FarmsV3Context)
-  const cakePrice = usePriceCakeUSD()
-
   return (
-    <>
-      {chosenFarmsMemoized?.map((farm) => {
-        if (farm.version === 2) {
-          return farm.boosted ? (
-            <ProxyFarmContainer farm={farm} key={farm.pid}>
-              <ProxyFarmCardContainer farm={farm} />
-            </ProxyFarmContainer>
-          ) : (
-            <FarmCard
-              key={farm.pid}
-              farm={farm}
-              displayApr={getDisplayApr(farm.apr, farm.lpRewardsApr)}
-              cakePrice={cakePrice}
-              account={account}
-              removed={false}
-            />
-          )
-        }
-        return <FarmV3Card key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
-      })}
-    </>
+    <div style={{ padding: 24 }}>
+      <h2>Farms History</h2>
+      <p>Farms and related historical data are temporarily unavailable.</p>
+    </div>
   )
 }
 
-FarmsHistoryPage.Layout = FarmsV3PageLayout
 FarmsHistoryPage.chains = SUPPORT_FARMS
 
 export default FarmsHistoryPage

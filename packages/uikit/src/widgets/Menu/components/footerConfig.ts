@@ -8,21 +8,16 @@ export const footerLinks: (t: ContextApi["t"]) => FooterLinkType[] = (t) => [
       {
         label: t("Contact"),
         href: "https://www.homelessexchange.com/",
-   
       },
       {
         label: t("Audits"),
         href: "https://drive.google.com/file/d/1CMmBkVVLX72DDJkogTf7esC80yrvbBqn/view?usp=drive_link",
-   
       },
-     
+
       {
-        label: t("Litepaper"),
+        label: t("White paper"),
         href: "https://www.homelessexchange.com/p/whitepaper.html",
-      }
-     
+      },
     ],
   },
-  
-  
 ];

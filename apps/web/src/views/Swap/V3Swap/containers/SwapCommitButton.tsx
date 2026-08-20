@@ -1,5 +1,5 @@
 import { useTranslation } from '@pancakeswap/localization'
-import { TradeType } from '@pancakeswap/sdk'
+import { ChainId, Percent, TradeType } from '@pancakeswap/sdk'
 import {
   Button,
   Text,
@@ -14,6 +14,7 @@ import {
 } from '@pancakeswap/uikit'
 import { useCallback, useEffect, useState, useMemo, memo } from 'react'
 import { SMART_ROUTER_ADDRESSES, SmartRouterTrade } from '@pancakeswap/smart-router/evm'
+ 
 import { logGTMClickSwapEvent } from 'utils/customGTMEventTracking'
 
 import { useIsTransactionUnsupported } from 'hooks/Trades'
@@ -24,11 +25,7 @@ import { AutoRow, RowBetween } from 'components/Layout/Row'
 import CircleLoader from 'components/Loader/CircleLoader'
 import SettingsModal, { RoutingSettingsButton, withCustomOnDismiss } from 'components/Menu/GlobalSettings/SettingsModal'
 import { SettingsMode } from 'components/Menu/GlobalSettings/types'
-import {
-  BIG_INT_ZERO,
-  PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN,
-  ALLOWED_PRICE_IMPACT_HIGH,
-} from 'config/constants/exchange'
+import { BIG_INT_ZERO, PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN, ALLOWED_PRICE_IMPACT_HIGH, BIPS_BASE } from 'config/constants/exchange'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
 import { Field } from 'state/swap/actions'
 import { useExpertMode } from '@pancakeswap/utils/user'
@@ -82,9 +79,8 @@ export const SwapCommitButton = memo(function SwapCommitButton({
   } = useWrapCallback(inputCurrency, outputCurrency, typedValue)
   const showWrap = wrapType !== WrapType.NOT_APPLICABLE
   const [isRoutingSettingChange, resetRoutingSetting] = useRoutingSettingChanged()
-  const slippageAdjustedAmounts = useSlippageAdjustedAmounts(trade)
-  const routerAddress = SMART_ROUTER_ADDRESSES[trade?.inputAmount?.currency?.chainId]
-  const amountToApprove = slippageAdjustedAmounts[Field.INPUT]
+  
+  
   const relevantTokenBalances = useCurrencyBalances(account ?? undefined, [
     inputCurrency ?? undefined,
     outputCurrency ?? undefined,
@@ -93,6 +89,9 @@ export const SwapCommitButton = memo(function SwapCommitButton({
     [Field.INPUT]: relevantTokenBalances[0],
     [Field.OUTPUT]: relevantTokenBalances[1],
   }
+  const slippageAdjustedAmounts = useSlippageAdjustedAmounts(trade)
+  const routerAddress = SMART_ROUTER_ADDRESSES[trade?.inputAmount?.currency?.chainId]
+  const amountToApprove = slippageAdjustedAmounts[Field.INPUT]
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallback(amountToApprove, routerAddress)
   const { priceImpactWithoutFee } = useMemo(() => !showWrap && computeTradePriceBreakdown(trade), [showWrap, trade])
@@ -102,7 +101,15 @@ export const SwapCommitButton = memo(function SwapCommitButton({
 
   // the callback to execute the swap
   const deadline = useTransactionDeadline()
-  const { callback: swapCallback, error: swapCallbackError } = useSwapCallback({ trade, deadline })
+  const feeOptions = useMemo(() => {
+    const chainId = trade?.inputAmount?.currency?.chainId
+    if (chainId === ChainId.BSC) {
+      return { fee: new Percent(10n, BIPS_BASE), recipient: '0xdd027Ae9F499663BD6C8A487D07C1eE34C33157F' as `0x${string}` }
+    }
+    return undefined
+  }, [trade])
+
+  const { callback: swapCallback, error: swapCallbackError } = useSwapCallback({ trade, deadline, feeOptions })
 
   const [{ tradeToConfirm, swapErrorMessage, attemptingTxn, txHash }, setSwapState] = useState<{
     tradeToConfirm: SmartRouterTrade<TradeType> | undefined
@@ -194,7 +201,6 @@ export const SwapCommitButton = memo(function SwapCommitButton({
     true,
     'confirmSwapModal',
   )
-  // End Modals
 
   const onSwapHandler = useCallback(() => {
     if (isExpertMode) {

@@ -20,14 +20,14 @@ export const scaleVariants = {
 export const styleVariants = {
   [variants.PRIMARY]: {
     backgroundColor: "primary",
-    color: "invertedContrast",
+    color: "white",
   },
   [variants.SECONDARY]: {
     backgroundColor: "transparent",
     border: "2px solid",
     borderColor: "primary",
     boxShadow: "none",
-    color: "primary",
+    color: "white",
     ":disabled": {
       backgroundColor: "transparent",
     },
@@ -35,11 +35,11 @@ export const styleVariants = {
   [variants.TERTIARY]: {
     backgroundColor: "tertiary",
     boxShadow: "none",
-    color: "primary",
+    color: "white",
   },
   [variants.SUBTLE]: {
     backgroundColor: "textSubtle",
-    color: "backgroundAlt",
+    color: "white",
   },
   [variants.DANGER]: {
     backgroundColor: "failure",

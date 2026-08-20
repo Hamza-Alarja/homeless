@@ -1,5 +1,15 @@
-import { useContext } from 'react'
 import { SUPPORT_FARMS } from 'config/constants/supportChains'
+
+/*
+  TEMP DISABLED: Farm currently uses PancakeSwap MasterChef/CAKE.
+  The original Farms page component is preserved below (commented) so it can be restored easily.
+
+  NOTE: Do NOT delete farm source files or hook calls. This file now shows a lightweight
+  temporary message to prevent the Farm UI from mounting when visiting `/farms`.
+*/
+
+/*
+import { useContext } from 'react'
 import { FarmsV3PageLayout, FarmsV3Context } from 'views/Farms'
 import { FarmV3Card } from 'views/Farms/components/FarmCard/V3/FarmV3Card'
 import { getDisplayApr } from 'views/Farms/components/getDisplayApr'
@@ -69,6 +79,16 @@ const FarmsPage = () => {
 }
 
 FarmsPage.Layout = FarmsV3PageLayout
+
+FarmsPage.chains = SUPPORT_FARMS
+
+export default FarmsPage
+*/
+
+// Lightweight temporary page to prevent mounting the full Farms UI.
+const FarmsPage = () => {
+  return <div style={{ padding: '24px' }}>Farms are temporarily unavailable.</div>
+}
 
 FarmsPage.chains = SUPPORT_FARMS
 

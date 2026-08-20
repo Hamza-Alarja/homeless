@@ -73,21 +73,221 @@ const BasicChart = ({
   const [timeWindow, setTimeWindow] = useState<PairDataTimeWindowEnum>(0)
   const { t } = useTranslation()
 
-  // API'den veri çekmeye çalış, ama başarısız olursa mock veri kullan
-  const { data: realPairPrices = [], error, isLoading } = useFetchPairPricesV3({
+  // If chart is expanded we need real data; otherwise avoid network requests and use mock data only.
+  const mockPairPrices = useMemo(() => generateMockPriceData(timeWindow), [timeWindow])
+
+  // Collapsed (not expanded) chart view: use mock data and avoid any network requests.
+  // ensure pairPrices exists in outer scope for later references
+  let pairPrices = mockPairPrices
+
+  if (!isChartExpanded) {
+    pairPrices = mockPairPrices
+    const [hoverValue, setHoverValue] = useState<number | undefined>()
+    const [hoverDate, setHoverDate] = useState<string | undefined>()
+    const valueToDisplay = hoverValue || pairPrices[pairPrices.length - 1]?.value
+
+    const {
+      changePercentage: changePercentageToCurrent,
+      changeValue: changeValueToCurrent,
+      isChangePositive: isChangePositiveToCurrent,
+    } = useMemo(() => getTimeWindowChange(pairPrices), [pairPrices])
+
+    const {
+      changePercentage,
+      changeValue,
+      isChangePositive,
+    } = useMemo(() => {
+      if (!pairPrices || pairPrices.length < 2) {
+        return {
+          changePercentage: '0.00',
+          changeValue: 0,
+          isChangePositive: true,
+        }
+      }
+      return hoverValue ? getTimeWindowChange(pairPrices) : {
+        changePercentage: changePercentageToCurrent,
+        changeValue: changeValueToCurrent,
+        isChangePositive: isChangePositiveToCurrent,
+      }
+    }, [hoverValue, pairPrices, changePercentageToCurrent, changeValueToCurrent, isChangePositiveToCurrent])
+
+    const currentDate = useMemo(
+      () =>
+        new Date().toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      [],
+    )
+
+    const chartHeight = isChartExpanded ? 'calc(100vh - 120px)' : '310px'
+
+    // Collapsed: show static/mock chart UI only (no network)
+    return (
+      <>
+        <Flex
+          flexDirection={['column', null, null, null, null, null, 'row']}
+          alignItems={['flex-start', null, null, null, null, null, 'center']}
+          justifyContent="space-between"
+          px="24px"
+          flexWrap="wrap"
+        >
+          <Flex flexDirection="column" pt="12px">
+            <PairPriceDisplay
+              value={pairPrices?.length > 0 && valueToDisplay}
+              inputSymbol={inputCurrency?.symbol}
+              outputSymbol={outputCurrency?.symbol}
+            >
+              <Text color={isChangePositive ? 'success' : 'failure'} fontSize="20px" ml="4px" bold>
+                {`${isChangePositive ? '+' : ''}${changeValue.toFixed(3)} (${changePercentage}%)`}
+              </Text>
+            </PairPriceDisplay>
+            <Text small color="secondary">
+              {hoverDate || currentDate}
+              <Text fontSize="10px" color="warning" mt="2px">
+                📊 Demo Veri (chart not expanded)
+              </Text>
+            </Text>
+          </Flex>
+          <Box>
+            <ButtonMenu activeIndex={timeWindow} onItemClick={setTimeWindow} scale="sm">
+              <ButtonMenuItem>{t('24H')}</ButtonMenuItem>
+              <ButtonMenuItem>{t('1W')}</ButtonMenuItem>
+              <ButtonMenuItem>{t('1M')}</ButtonMenuItem>
+              <ButtonMenuItem>{t('1Y')}</ButtonMenuItem>
+            </ButtonMenu>
+          </Box>
+        </Flex>
+        <Box height={isMobile ? '100%' : chartHeight} p={isMobile ? '0px' : '16px'} width="100%">
+          <SwapLineChart
+            data={pairPrices}
+            setHoverValue={setHoverValue}
+            setHoverDate={setHoverDate}
+            isChangePositive={isChangePositiveToCurrent}
+            isChartExpanded={isChartExpanded}
+            timeWindow={timeWindow}
+          />
+        </Box>
+      </>
+    )
+  }
+
+  // Expanded chart: mount the full chart UI which performs network requests
+  const ExpandedChart = ({
     token0Address,
     token1Address,
     timeWindow,
     currentSwapPrice,
-  })
+    inputCurrency,
+    outputCurrency,
+    isMobile,
+    isChartExpanded,
+  }) => {
+    const { data: realPairPrices = [], error, isLoading } = useFetchPairPricesV3({
+      token0Address,
+      token1Address,
+      timeWindow,
+      currentSwapPrice,
+    })
 
-  // Eğer API'den veri gelmezse veya hata varsa mock veri kullan
-  const mockPairPrices = useMemo(() => generateMockPriceData(timeWindow), [timeWindow])
-  const pairPrices = realPairPrices.length > 0 ? realPairPrices : mockPairPrices
+    const pairPrices = realPairPrices.length > 0 ? realPairPrices : mockPairPrices
 
-  console.log('🔥 BasicChart - API Data:', realPairPrices.length, 'Mock Data:', mockPairPrices.length)
-  console.log('🔥 BasicChart - Using:', pairPrices.length, 'data points')
-  console.log('🔥 BasicChart - Error:', error)
+    const [hoverValue, setHoverValue] = useState<number | undefined>()
+    const [hoverDate, setHoverDate] = useState<string | undefined>()
+    const valueToDisplay = hoverValue || pairPrices[pairPrices.length - 1]?.value
+
+    const {
+      changePercentage: changePercentageToCurrent,
+      changeValue: changeValueToCurrent,
+      isChangePositive: isChangePositiveToCurrent,
+    } = useMemo(() => getTimeWindowChange(pairPrices), [pairPrices])
+
+    const {
+      changePercentage,
+      changeValue,
+      isChangePositive,
+    } = useMemo(() => {
+      if (!pairPrices || pairPrices.length < 2) {
+        return {
+          changePercentage: '0.00',
+          changeValue: 0,
+          isChangePositive: true,
+        }
+      }
+      return hoverValue ? getTimeWindowChange(pairPrices) : {
+        changePercentage: changePercentageToCurrent,
+        changeValue: changeValueToCurrent,
+        isChangePositive: isChangePositiveToCurrent,
+      }
+    }, [hoverValue, pairPrices, changePercentageToCurrent, changeValueToCurrent, isChangePositiveToCurrent])
+
+    const currentDate = useMemo(
+      () =>
+        new Date().toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      [],
+    )
+
+    const chartHeight = isChartExpanded ? 'calc(100vh - 120px)' : '310px'
+
+    return (
+      <>
+        <Flex
+          flexDirection={['column', null, null, null, null, null, 'row']}
+          alignItems={['flex-start', null, null, null, null, null, 'center']}
+          justifyContent="space-between"
+          px="24px"
+          flexWrap="wrap"
+        >
+          <Flex flexDirection="column" pt="12px">
+            <PairPriceDisplay
+              value={pairPrices?.length > 0 && valueToDisplay}
+              inputSymbol={inputCurrency?.symbol}
+              outputSymbol={outputCurrency?.symbol}
+            >
+              <Text color={isChangePositive ? 'success' : 'failure'} fontSize="20px" ml="4px" bold>
+                {`${isChangePositive ? '+' : ''}${changeValue.toFixed(3)} (${changePercentage}%)`}
+              </Text>
+            </PairPriceDisplay>
+            <Text small color="secondary">
+              {hoverDate || currentDate}
+              {(error || realPairPrices.length === 0) && (
+                <Text fontSize="10px" color="warning" mt="2px">
+                  📊 Demo Veri (API Bağlantı Sorunu)
+                </Text>
+              )}
+            </Text>
+          </Flex>
+          <Box>
+            <ButtonMenu activeIndex={timeWindow} onItemClick={setTimeWindow} scale="sm">
+              <ButtonMenuItem>{t('24H')}</ButtonMenuItem>
+              <ButtonMenuItem>{t('1W')}</ButtonMenuItem>
+              <ButtonMenuItem>{t('1M')}</ButtonMenuItem>
+              <ButtonMenuItem>{t('1Y')}</ButtonMenuItem>
+            </ButtonMenu>
+          </Box>
+        </Flex>
+        <Box height={isMobile ? '100%' : chartHeight} p={isMobile ? '0px' : '16px'} width="100%">
+          <SwapLineChart
+            data={pairPrices}
+            setHoverValue={setHoverValue}
+            setHoverDate={setHoverDate}
+            isChangePositive={isChangePositiveToCurrent}
+            isChartExpanded={isChartExpanded}
+            timeWindow={timeWindow}
+          />
+        </Box>
+      </>
+    )
+  }
 
   const [hoverValue, setHoverValue] = useState<number | undefined>()
   const [hoverDate, setHoverDate] = useState<string | undefined>()
@@ -143,55 +343,7 @@ const BasicChart = ({
     return <NoChartAvailable token0Address={token0Address} token1Address={token1Address} pairAddress={null} isMobile={isMobile} />
   }
 
-  return (
-    <>
-      <Flex
-        flexDirection={['column', null, null, null, null, null, 'row']}
-        alignItems={['flex-start', null, null, null, null, null, 'center']}
-        justifyContent="space-between"
-        px="24px"
-        flexWrap="wrap"
-      >
-        <Flex flexDirection="column" pt="12px">
-          <PairPriceDisplay
-            value={pairPrices?.length > 0 && valueToDisplay}
-            inputSymbol={inputCurrency?.symbol}
-            outputSymbol={outputCurrency?.symbol}
-          >
-            <Text color={isChangePositive ? 'success' : 'failure'} fontSize="20px" ml="4px" bold>
-              {`${isChangePositive ? '+' : ''}${changeValue.toFixed(3)} (${changePercentage}%)`}
-            </Text>
-          </PairPriceDisplay>
-          <Text small color="secondary">
-            {hoverDate || currentDate}
-            {(error || realPairPrices.length === 0) && (
-              <Text fontSize="10px" color="warning" mt="2px">
-                📊 Demo Veri (API Bağlantı Sorunu)
-              </Text>
-            )}
-          </Text>
-        </Flex>
-        <Box>
-          <ButtonMenu activeIndex={timeWindow} onItemClick={setTimeWindow} scale="sm">
-            <ButtonMenuItem>{t('24H')}</ButtonMenuItem>
-            <ButtonMenuItem>{t('1W')}</ButtonMenuItem>
-            <ButtonMenuItem>{t('1M')}</ButtonMenuItem>
-            <ButtonMenuItem>{t('1Y')}</ButtonMenuItem>
-          </ButtonMenu>
-        </Box>
-      </Flex>
-      <Box height={isMobile ? '100%' : chartHeight} p={isMobile ? '0px' : '16px'} width="100%">
-        <SwapLineChart
-          data={pairPrices}
-          setHoverValue={setHoverValue}
-          setHoverDate={setHoverDate}
-          isChangePositive={isChangePositiveToCurrent}
-          isChartExpanded={isChartExpanded}
-          timeWindow={timeWindow}
-        />
-      </Box>
-    </>
-  )
+  return <ExpandedChart {...{ token0Address, token1Address, timeWindow, currentSwapPrice, inputCurrency, outputCurrency, isMobile, isChartExpanded }} />
 }
 
 export default memo(BasicChart, (prev, next) => {

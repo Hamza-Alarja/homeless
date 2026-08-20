@@ -1,5 +1,5 @@
 import { useTheme } from '@pancakeswap/hooks'
-import { useMatchBreakpoints } from '@pancakeswap/uikit'
+import { PoolIcon, SwapFillIcon, SwapIcon, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { LinkStatus } from '@pancakeswap/uikit/src/widgets/Menu/types'
 import { useActiveChainId } from 'hooks/useActiveChainId'
@@ -20,9 +20,24 @@ export const useMenuItems = (onUsCitizenModalPresent?: () => void): ConfigMenuIt
   const { isMobile } = useMatchBreakpoints()
 
   const menuItems = useMemo(() => {
-    const mobileConfig = [...config(t, isDark, languageCode, chainId)]
-    mobileConfig.push(mobileConfig.splice(4, 1)[0])
-    return isMobile ? mobileConfig : config(t, isDark, languageCode, chainId)
+    if (isMobile) {
+      return [
+        {
+          label: t('Trade'),
+          href: '/swap',
+          icon: SwapIcon,
+          fillIcon: SwapFillIcon,
+          showItemsOnMobile: false,
+        },
+        {
+          label: t('Liquidity'),
+          href: '/liquidity',
+          icon: PoolIcon,
+          showItemsOnMobile: false,
+        },
+      ] as ConfigMenuItemsType[]
+    }
+    return config(t, isDark, languageCode, chainId)
   }, [t, isDark, languageCode, chainId, isMobile])
   const [userNotUsCitizenAcknowledgement] = useUserNotUsCitizenAcknowledgement(IdType.PERPETUALS)
 

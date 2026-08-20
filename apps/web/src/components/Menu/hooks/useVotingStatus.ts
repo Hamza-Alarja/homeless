@@ -3,6 +3,7 @@ import { ProposalState, Proposal } from 'state/types'
 import request, { gql } from 'graphql-request'
 import { SNAPSHOT_API } from 'config/constants/endpoints'
 import { PANCAKE_SPACE, ADMINS } from 'views/Voting/config'
+import { useRouter } from 'next/router'
 
 export const getCoreProposal = async (type: ProposalState): Promise<Proposal[]> => {
   const response = await request(
@@ -20,7 +21,12 @@ export const getCoreProposal = async (type: ProposalState): Promise<Proposal[]> 
 }
 
 export const useVotingStatus = () => {
-  const { data: votingStatus = null } = useSWRImmutable('anyActiveSoonCoreProposals', async () => {
+  const { pathname } = useRouter()
+  const shouldFetch = !pathname.startsWith('/swap')
+
+  const { data: votingStatus = null } = useSWRImmutable(
+    shouldFetch ? 'anyActiveSoonCoreProposals' : null,
+    async () => {
     const activeProposals = await getCoreProposal(ProposalState.ACTIVE)
     if (activeProposals.length) {
       return 'vote_now'
@@ -30,6 +36,7 @@ export const useVotingStatus = () => {
       return 'soon'
     }
     return null
-  })
+    },
+  )
   return votingStatus
 }

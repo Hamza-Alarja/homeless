@@ -31,7 +31,7 @@ const CryptoTable = () => {
   if (isMobile) {
     return (
       <div className={styles.mobileContainer}>
-        <Heading mb="20px" scale="xl" color="white">
+        <Heading mb="20px" scale="xl" color="text">
           Trending Coins
         </Heading>
 
@@ -40,7 +40,9 @@ const CryptoTable = () => {
             <div key={coin.id} className={styles.mobileCard}>
               <Flex alignItems="center" justifyContent="space-between" mb="8px">
                 <Flex alignItems="center">
-                  <img src={coin.image} alt={coin.name} className={styles.mobileImage} />
+                  <div className={styles.mobileImageWrapper}>
+                    <img src={coin.image} alt={coin.name} className={styles.mobileImage} />
+                  </div>
                   <div className={styles.mobileNameContainer}>
                     <Text bold className={styles.mobileName}>
                       {coin.name}
@@ -68,7 +70,7 @@ const CryptoTable = () => {
 
   return (
     <>
-      <Heading mb="20px" scale="xl" color="white">
+      <Heading mb="20px" scale="xl" color="text">
         Trending Coins
       </Heading>
 

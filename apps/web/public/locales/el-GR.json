@@ -899,7 +899,7 @@
   "Will you join them?": "Θα γίνετε μέλος;",
   "$%tvl% staked": "$%tvl% σε stake",
   "The moon is made of pancakes.": "Η εκτόξευση στο φεγγάρι θα γίνει με pancake.",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Κάντε συναλλαγές, συγκεντρώστε και κερδίστε κρυπτονομίσματα στην πιο δημοφιλή αποκεντρωμένη πλατφόρμα του γαλαξία.",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Ανταλλάξτε κρυπτονομίσματα. Παρέχετε ρευστότητα. Διατηρήστε τον έλεγχο.",
   "Lunar bunny": "Σεληνιακό λαγουδάκι",
   "Total supply": "Συνολική προσφορά",
   "Burned to date": "Έχουν καεί μέχρι σήμερα",
@@ -1547,7 +1547,6 @@
   "Highest": "Υψηλότερη",
   "Connect": "Σύνδεση",
   "Play Now": "Παίξτε τώρα",
-  "Litepaper": "Litepaper",
   "Win $%prize% in Lottery": "Κερδίστε $%prize% στη Λοταρία",
   "Approve was called unnecessarily": "Η έγκριση κλήθηκε άσκοπα",
   "No token": "Δεν υπάρχει νόμισμα",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Το Homeless token βρίσκεται στην καρδιά του οικοσυστήματος Homelesswap. Αγοράστε το, κερδίστε το, farm-άρετέ το, ξοδέψτε το, stake-άρετέ το... ακόμη και μπορείτε να ψηφίσετε με αυτό!",
   "Explore Other Platforms": "Εξερευνήστε άλλες πλατφόρμες",
   "Visit Website": "Επισκεφθείτε τον ιστότοπο",
-  "Homelesswap makes it easy to make your crypto work for you.": "Το Homelesswap κάνει εύκολο το να βάλεις τα κρυπτονομίσματά σου να δουλέψουν για εσένα."
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Το Homelesswap κάνει εύκολο το να βάλεις τα κρυπτονομίσματά σου να δουλέψουν για εσένα.",
+  "White paper": "Λευκή τεκμηρίωση"
 }

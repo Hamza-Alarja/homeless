@@ -899,7 +899,7 @@
   "Will you join them?": "Присоединитесь к ним?",
   "$%tvl% staked": "%tvl% долл. США вложено",
   "The moon is made of pancakes.": "Луна сделана из панкейков.",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Совершайте сделки, зарабатывайте и выигрывайте криптовалюту на самой популярной децентрализованной платформе в галактике.",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Обменивайте крипто. Обеспечивайте ликвидность. Сохраняйте контроль.",
   "Lunar bunny": "Лунный кролик",
   "Total supply": "Общее предложение",
   "Burned to date": "Сожжено на сегодня",
@@ -1547,7 +1547,6 @@
   "Highest": "Самая высокая",
   "Connect": "Подключиться",
   "Play Now": "Играть",
-  "Litepaper": "Резюме технического описания",
   "Win $%prize% in Lottery": "Выиграйте %prize% $ в лотерею",
   "Approve was called unnecessarily": "Подтверждение было вызвано без необходимости",
   "No token": "Нет токена",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Homeless token находится в сердце экосистемы Homelesswap. Купите его, выиграйте его, фармите, тратьте, стейкайте... вы даже можете голосовать с его помощью!",
   "Explore Other Platforms": "Изучить другие платформы",
   "Visit Website": "Посетить сайт",
-  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap упрощает работу вашей криптовалюты для вас."
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap упрощает работу вашей криптовалюты для вас.",
+  "White paper": "Белая книга"
 }

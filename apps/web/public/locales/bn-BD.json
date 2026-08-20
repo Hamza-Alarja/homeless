@@ -899,7 +899,7 @@
   "Will you join them?": "আপনি কি তাদের সাথে যোগ দেবেন?",
   "$%tvl% staked": "$%tvl% স্টেক করা হয়েছে",
   "The moon is made of pancakes.": "চাঁদ pancake দিয়ে তৈরি।",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "ছায়াপথের সবচেয়ে জনপ্রিয় বিকেন্দ্রীভূত প্ল্যাটফর্মে ক্রিপ্টো ট্রেড করুন, উপার্জন করুন এবং জিতুন।",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "ক্রিপ্টো এক্সচেঞ্জ করুন। লিকুইডিটি প্রদান করুন। নিয়ন্ত্রণে থাকুন.",
   "Lunar bunny": "চাঁদের খরগোস",
   "Total supply": "মোট সরবরাহ",
   "Burned to date": "এখন পর্যন্ত খরচ করা হয়েছে",
@@ -1547,7 +1547,6 @@
   "Highest": "সর্বোচ্চ",
   "Connect": "সংযুক্ত করুন",
   "Play Now": "এখনই খেলুন",
-  "Litepaper": "লাইটপেপার",
   "Win $%prize% in Lottery": "লটারিতে $%prize% জিতে নিন",
   "Approve was called unnecessarily": "অকারণে অনুমোদন চাওয়া হয়েছিল",
   "No token": "টোকেন নেই",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Homeless token হল Homelesswap ইকোসিস্টেমের কেন্দ্রে। এটি কিনুন, জিতুন, ফার্ম করুন, ব্যয় করুন, স্টেক করুন... এমনকি এর মাধ্যমে ভোটও দিতে পারেন!",
   "Explore Other Platforms": "অন্যান্য প্ল্যাটফর্ম অন্বেষণ করুন",
   "Visit Website": "ওয়েবসাইট দেখুন",
-  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap আপনার ক্রিপ্টোকে আপনার জন্য কাজ করানো সহজ করে তোলে।"
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap আপনার ক্রিপ্টোকে আপনার জন্য কাজ করানো সহজ করে তোলে।",
+  "White paper": "হোয়াইট পেপার"
 }

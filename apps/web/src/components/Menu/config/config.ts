@@ -60,7 +60,7 @@ const config: (
           label: t('Liquidity'),
           href: '/liquidity',
         },
-      /*   {
+        /*   {
           label: t('Perpetual'),
           href: getPerpetualUrl({
             chainId,
@@ -81,14 +81,23 @@ const config: (
           supportChainIds: SUPPORT_ONLY_BSC,
           image: '/images/decorations/3d-coin.png',
         },
+        // TEMP DISABLED:
+        // Buy Crypto depends on external fiat on-ramp providers/signing backend
+        // and is not production-ready for Homelesswap yet.
+        /*
         {
           label: t('Buy Crypto'),
           LabelIcon: NewIconButton,
           href: '/buy-crypto',
           status: { text: t('New'), color: 'success' },
         },
+        */
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
+    // TEMP DISABLED:
+    // Current Earn products rely on third-party/PancakeSwap contracts.
+    // Keep for future Homelesswap-native Earn products.
+    /*
     {
       label: t('Earn'),
       href: '/farms',
@@ -113,7 +122,8 @@ const config: (
           supportChainIds: POOL_SUPPORTED_CHAINS,
         },
       ].map((item) => addMenuItemSupported(item, chainId)),
-    }
+    },
+    */
     /* {
       label: t('NFT'),
       href: `${nftsBaseUrl}`,
@@ -136,7 +146,7 @@ const config: (
         },
       ],
     }, */
-  /*   {
+    /*   {
       label: t('Game'),
       icon: PancakeProtectorIcon,
       hideSubNav: true,
@@ -149,7 +159,6 @@ const config: (
         },
       ],
     }, */
-    
   ].map((item) => addMenuItemSupported(item, chainId))
 
 export default config

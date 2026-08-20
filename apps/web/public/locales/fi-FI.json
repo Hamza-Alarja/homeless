@@ -899,7 +899,7 @@
   "Will you join them?": "Liitytkö heidän joukkoonsa?",
   "$%tvl% staked": "%tvl% $ panostettu",
   "The moon is made of pancakes.": "Kuu on tehty pannukakuista.",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Treidaa, ansaitse ja voita kryptoa galaksin suosituimmalla desentralisoidulla alustalla.",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Vaihda kryptovaluuttaa. Tarjoa likviditeettiä. Pidä kontrolli.",
   "Lunar bunny": "Kuupupu",
   "Total supply": "Kokonaisvaranto",
   "Burned to date": "Poltettu tähän asti",
@@ -1547,7 +1547,6 @@
   "Highest": "Korkein",
   "Connect": "Yhdistä",
   "Play Now": "Pelaa nyt",
-  "Litepaper": "Litepaper",
   "Win $%prize% in Lottery": "Voita %prize% $ arvonnassa",
   "Approve was called unnecessarily": "Hyväksyntä kutsuttiin tarpeettomasti",
   "No token": "Ei polettia",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Homeless token on Homelesswap-ekosysteemin sydämessä. Osta sitä, voita sitä, farmaa sitä, käytä sitä, stakeaa sitä... voit jopa äänestää sillä!",
   "Explore Other Platforms": "Tutki muita alustoja",
   "Visit Website": "Vieraile verkkosivustolla",
-  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap tekee kryptosi hyödyntämisestä helppoa."
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap tekee kryptosi hyödyntämisestä helppoa.",
+  "White paper": "Valkoinen paperi"
 }

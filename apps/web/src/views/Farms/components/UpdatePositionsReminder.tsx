@@ -12,6 +12,7 @@ import { useMemo, useState } from 'react'
 import { useFarmsV3Public } from 'state/farmsV3/hooks'
 import { encodeFunctionData } from 'viem'
 import { useAccount, useContractReads, useSendTransaction } from 'wagmi'
+import { useRouter } from 'next/router'
 
 const lmPoolABI = [
   {
@@ -57,8 +58,18 @@ export function UpdatePositionsReminder() {
   const { address: account } = useAccount()
   const { chainId } = useActiveChainId()
   const isMounted = useIsMounted()
+  const router = useRouter()
+
+  // Minimal route-based gating: don't run farm reminder hooks on unrelated pages
+  // (notably avoid running on /swap which was causing heavy multicall load).
+  const pathname = router?.pathname ?? ''
+
+  const isAllowedRoute = !pathname.startsWith('/swap')
+
   // eslint-disable-next-line react/jsx-pascal-case
-  return account && chainId && isMounted && <UpdatePositionsReminder_ key={`${account}-${chainId}`} />
+  return account && chainId && isMounted && isAllowedRoute && (
+    <UpdatePositionsReminder_ key={`${account}-${chainId}`} />
+  )
 }
 
 export function UpdatePositionsReminder_() {

@@ -27,9 +27,9 @@ export const SlideSvgDark: React.FC<React.PropsWithChildren<SvgProps>> = (props)
       />
       <defs>
         <linearGradient id="paint0_linear_dark" x1="830" y1="83.5" x2="830" y2="338.5" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#08060B" stopOpacity="0.2" />
-          <stop offset="0.545554" stopColor="#08060B" stopOpacity="0.5" />
-          <stop offset="1" stopColor="#08060B" />
+          <stop stopColor="#0B0D12" stopOpacity="0.2" />
+          <stop offset="0.545554" stopColor="#0B0D12" stopOpacity="0.5" />
+          <stop offset="1" stopColor="#0B0D12" />
         </linearGradient>
       </defs>
     </Svg>

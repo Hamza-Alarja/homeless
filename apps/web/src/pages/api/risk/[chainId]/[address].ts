@@ -60,11 +60,29 @@ const handler: NextApiHandler = async (req, res) => {
     body,
     method,
   })
-  const json = await response.json()
+  // Guard: ensure we only attempt to parse JSON when it's actually JSON and the response is OK
+  const contentType = response.headers.get('content-type') || ''
 
   res.setHeader('Cache-Control', 's-maxage=86400, max-age=3600')
 
-  return res.status(response.status).json({
+  if (!response.ok || !contentType.includes('application/json')) {
+    // upstream is unavailable or didn't return JSON (could be HTML error page)
+    return res.status(502).json({ error: 'risk-provider-unavailable' })
+  }
+
+  let json: any
+  try {
+    json = await response.json()
+  } catch (e) {
+    return res.status(502).json({ error: 'risk-provider-unavailable' })
+  }
+
+  // Validate expected shape before returning
+  if (!json || !json.data || !json.data.band) {
+    return res.status(502).json({ error: 'risk-provider-unavailable' })
+  }
+
+  return res.status(200).json({
     ...json,
     data: {
       trust_level: json.data.trust_level,

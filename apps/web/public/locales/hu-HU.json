@@ -899,7 +899,7 @@
   "Will you join them?": "Csatlakozik hozzájuk?",
   "$%tvl% staked": "%tvl% tétre",
   "The moon is made of pancakes.": "A Hold palacsintákból van.",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Kereskedjen, keressen és nyerjen kriptovalutát a galaxis legnépszerűbb decentralizált platformján.",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Cserélj kriptót. Biztosíts likviditást. Maradj irányítás alatt.",
   "Lunar bunny": "Holdbéli nyuszi",
   "Total supply": "Kínálat összesen",
   "Burned to date": "Eddig elégetve",
@@ -1547,7 +1547,6 @@
   "Highest": "Legmagasabb",
   "Connect": "Csatlakozás",
   "Play Now": "Játék most",
-  "Litepaper": "Litepaper",
   "Win $%prize% in Lottery": "Nyerjen $%prize% nyereményt a lottón",
   "Approve was called unnecessarily": "A jóváhagyás felesleges hívása",
   "No token": "Nincs zseton",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "A Homeless token a Homelesswap ökoszisztéma szíve. Vásárold meg, nyerd meg, farmold, költsd el, stake-eld... még szavazni is lehet vele!",
   "Explore Other Platforms": "Fedezze fel más platformokat",
   "Visit Website": "Látogasson el a weboldalra",
-  "Homelesswap makes it easy to make your crypto work for you.": "A Homelesswap megkönnyíti, hogy a kriptóját Ön számára hasznosítsa."
-
+  "Homelesswap makes it easy to make your crypto work for you.": "A Homelesswap megkönnyíti, hogy a kriptóját Ön számára hasznosítsa.",
+  "White paper": "Fehér könyv"
 }

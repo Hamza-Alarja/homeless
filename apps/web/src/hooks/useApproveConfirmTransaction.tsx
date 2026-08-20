@@ -94,6 +94,7 @@ const useApproveConfirmTransaction = ({
   onApproveSuccess = noop,
   ...props
 }: ApproveConfirmTransaction) => {
+  // default spender: SmartRouter for the active chain (keeps approvals aligned with execution)
   // spender = SWAP_Commissions[useActiveChainId.toString()]
   const { onApprove, onRequiresApproval } =
     props && 'onApprove' in props ? props : { onRequiresApproval: undefined, onApprove: undefined }

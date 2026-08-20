@@ -899,7 +899,7 @@
   "Will you join them?": "함께 하시겠습니까?",
   "$%tvl% staked": "$%tvl% 스테이킹됨",
   "The moon is made of pancakes.": "Pancake로 달을 만들었습니다.",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "은하계에서 가장 인기 높은 분산형 플랫폼에서 암호 화폐를 거래하고 얻고 획득하세요.",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "암호화폐를 스왑하세요. 유동성을 제공하세요. 통제를 유지하세요.",
   "Lunar bunny": "루나 버니",
   "Total supply": "총 공급",
   "Burned to date": "소각 누계",
@@ -1547,7 +1547,6 @@
   "Highest": "최고",
   "Connect": "연결",
   "Play Now": "지금 플레이",
-  "Litepaper": "라이트페이퍼",
   "Win $%prize% in Lottery": "로터리에서 $%prize% 당첨",
   "Approve was called unnecessarily": "승인이 불필요하게 호출되었습니다",
   "No token": "토큰 없음",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Homeless token은 Homelesswap 생태계의 중심에 있습니다. 구매하세요, 획득하세요, 파밍하세요, 사용하세요, 스테이크하세요... 심지어 그것으로 투표할 수도 있습니다!",
   "Explore Other Platforms": "다른 플랫폼 탐색",
   "Visit Website": "웹사이트 방문",
-  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap을 사용하면 암호화폐를 쉽게 활용할 수 있습니다."
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap을 사용하면 암호화폐를 쉽게 활용할 수 있습니다.",
+  "White paper": "백서"
 }

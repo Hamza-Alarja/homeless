@@ -92,11 +92,16 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         index={2}
         hasCurvedDivider={false}
       >
+        {/* TEMP DISABLED:
+            Connected-user homepage banner is not required for core Homelesswap functionality.
+            Keep for possible future profile/account experience. */}
+        {/*
         {account && chainId === ChainId.BSC && (
           <UserBannerWrapper>
             <UserBanner />
           </UserBannerWrapper>
         )}
+        */}
         {/*  <MultipleBanner /> */}
         <Hero />
       </StyledHeroSection>

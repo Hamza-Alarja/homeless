@@ -78,7 +78,7 @@ const MenuItem: React.FC<React.PropsWithChildren<FooterProps>> = ({
             </StyledList>
           ))}
           <Box display={["none", null, "block"]}>
-          <img src="/images/homless.png" width="130px" />
+            <img src="/images/homless.png" width="130px" />
           </Box>
         </Flex>
         <StyledSocialLinks order={[2]} pb={["42px", null, "32px"]} mb={["0", null, "32px"]} />
@@ -101,7 +101,7 @@ const MenuItem: React.FC<React.PropsWithChildren<FooterProps>> = ({
             />
           </Flex>
           <Flex order={[1, null, 2]} mb={["24px", null, "0"]} justifyContent="space-between" alignItems="center">
-          {/*   <Box mr="20px">
+            {/*   <Box mr="20px">
               <CakePrice chainId={chainId} cakePriceUsd={cakePriceUsd} color="textSubtle" />
             </Box> */}
             <Button
@@ -110,7 +110,7 @@ const MenuItem: React.FC<React.PropsWithChildren<FooterProps>> = ({
               href={buyCakeLink}
               target="_blank"
               scale="sm"
-              endIcon={<ArrowForwardIcon color="backgroundAlt" />}
+              endIcon={<ArrowForwardIcon color="white" />}
             >
               {buyCakeLabel}
             </Button>

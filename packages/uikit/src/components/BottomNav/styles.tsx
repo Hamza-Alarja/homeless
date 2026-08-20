@@ -13,6 +13,10 @@ const StyledBottomNav = styled(Flex)`
     padding-bottom: 45px;
   }
   z-index: 20;
+
+  & > * {
+    flex: 1 1 0;
+  }
 `;
 
 export default StyledBottomNav;

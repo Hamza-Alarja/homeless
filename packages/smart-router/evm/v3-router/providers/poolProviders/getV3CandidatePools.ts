@@ -54,12 +54,28 @@ const v3PoolsOnChainProviderFactory = <P extends Params = Params>(
       tvlReferenceProvider(params),
     ])
 
-    if (fromOnChain.status === 'fulfilled' && tvlReference.status === 'fulfilled') {
+    // If on-chain pool discovery succeeded, prefer returning those pools immediately.
+    // TVL/subgraph enrichment is best-effort: if it fails, continue using on-chain pools
+    // with a safe default TVL (0n). Only fail when on-chain discovery itself failed.
+    if (fromOnChain.status === 'fulfilled') {
       const { value: poolsFromOnChain } = fromOnChain
-      const { value: poolTvlReferences } = tvlReference
-      if (!Array.isArray(poolTvlReferences)) {
-        throw new Error('Failed to get tvl references')
+      let poolTvlReferences: V3PoolTvlReference[] = []
+
+      if (tvlReference.status === 'fulfilled') {
+        const { value } = tvlReference
+        if (Array.isArray(value)) {
+          poolTvlReferences = value
+        } else {
+          // invalid shape from TVL provider; log and continue without TVL enrichment
+          // eslint-disable-next-line no-console
+          console.error('Failed to get tvl references: invalid response, proceeding without tvl enrichment')
+        }
+      } else {
+        // TVL provider rejected (timeout, network error, etc.). Proceed without TVL.
+        // eslint-disable-next-line no-console
+        console.error('Failed to get tvl references, proceeding without tvl enrichment', tvlReference.reason)
       }
+
       return poolsFromOnChain.map((pool) => {
         const tvlUSD = BigInt(getV3PoolTvl(poolTvlReferences, pool.address))
         return {
@@ -68,6 +84,8 @@ const v3PoolsOnChainProviderFactory = <P extends Params = Params>(
         }
       })
     }
+
+    // If on-chain discovery failed, preserve existing failure behavior so fallbacks can run.
     throw new Error(`Getting v3 pools failed. Onchain ${fromOnChain.status}, tvl references ${tvlReference.status}`)
   }
 }

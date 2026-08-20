@@ -80,36 +80,42 @@ const Stats = () => {
       <img src="/images/homless.png" alt="homlesswap" width="150px" height="150px" />
       <p
         style={{
-          padding: '16px 0',
-          fontSize: '20px',
-          fontWeight: '600',
+          margin: '16px ',
+          padding: '8px 14px',
+          fontSize: 'clamp(0.9rem, 1.3vw, 1.15rem)',
+          fontWeight: '700',
+          lineHeight: 1.3,
           textAlign: 'center',
-          background: 'linear-gradient(90deg, #FFD700, #FFA500, #FF8C00)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          letterSpacing: '1px',
-          animation: 'pulse 2s infinite',
+          letterSpacing: '0.06em',
+          color: '#5D57F7',
+          textTransform: 'uppercase',
+          textShadow: '0 0 16px rgba(93, 87, 247, 0.1)',
+          borderRadius: '999px',
+          border: '1px solid rgba(93, 87, 247, 0.18)',
+          background: 'linear-gradient(180deg, rgba(93, 87, 247, 0.04), rgba(93, 87, 247, 0.08))',
+          boxShadow: '0 8px 18px rgba(93, 87, 247, 0.05)',
         }}
       >
-        🚀 Homeless Wallet & NFT <span style={{ fontStyle: 'italic' }}>Coming Soon!</span>
+        <span
+          style={{
+            fontWeight: '700',
+            color: '#5D57F7',
+          }}
+        >
+          Homeless Wallet &amp; NFT{' '}
+        </span>
+        <span
+          style={{
+            fontStyle: 'italic',
+            fontWeight: '800',
+            color: '#756ef3',
+            letterSpacing: '0.06em',
+          }}
+        >
+          Coming Soon!
+        </span>
       </p>
-      <style jsx>{`
-        @keyframes pulse {
-          0% {
-            opacity: 1;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 0.7;
-            transform: scale(1.05);
-          }
-          100% {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-      `}</style>
-      <ChainTags /> 
+      <ChainTags />
     </Flex>
   )
 }

@@ -899,7 +899,7 @@
   "Will you join them?": "Ti unirai a loro?",
   "$%tvl% staked": "$%tvl% in stake",
   "The moon is made of pancakes.": "La luna è fatta di pancake.",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Scambia, guadagna e vinci criptovalute sulla piattaforma decentralizzata più popolare della galassia.",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Scambia crypto. Fornisci liquidità. Mantieni il controllo.",
   "Lunar bunny": "Coniglio lunare",
   "Total supply": "Fornitura totale",
   "Burned to date": "Bruciati fino ad oggi",
@@ -1547,7 +1547,6 @@
   "Highest": "Più alto",
   "Connect": "Connetti",
   "Play Now": "Gioca subito",
-  "Litepaper": "Litepaper",
   "Win $%prize% in Lottery": "Vinci %prize%$ alla lotteria",
   "Approve was called unnecessarily": "Approva è stato chiamato inutilmente",
   "No token": "Nessun token",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Homeless token è al cuore dell'ecosistema Homelesswap. Compralo, vinci, farmalo, spendilo, mettilo in stake... puoi persino votare con esso!",
   "Explore Other Platforms": "Esplora altre piattaforme",
   "Visit Website": "Visita il sito web",
-  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap rende facile far lavorare la tua criptovaluta per te."
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap rende facile far lavorare la tua criptovaluta per te.",
+  "White paper": "Documento tecnico"
 }

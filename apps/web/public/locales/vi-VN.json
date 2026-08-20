@@ -899,7 +899,7 @@
   "Will you join them?": "Bạn có muốn tham gia không?",
   "$%tvl% staked": "$%tvl% được đặt cọc",
   "The moon is made of pancakes.": "Mặt trăng được làm từ bánh pancake.",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Giao dịch, kiếm tiền và giành các giải thưởng tiền điện tử trên nền tảng phi tập trung phổ biến nhất trong dải ngân hà.",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Hoán đổi crypto. Cung cấp thanh khoản. Giữ quyền kiểm soát.",
   "Lunar bunny": "Thỏ ngọc",
   "Total supply": "Tổng lượng cung",
   "Burned to date": "Đã đốt cháy đến nay",
@@ -1547,7 +1547,6 @@
   "Highest": "Cao nhất",
   "Connect": "Kết nối",
   "Play Now": "Hãy chơi ngay",
-  "Litepaper": "Litepaper",
   "Win $%prize% in Lottery": "Thắng %prize% $ trong Bốc thăm",
   "Approve was called unnecessarily": "Lệnh phê duyệt đã được gọi một cách không cần thiết",
   "No token": "Không có token",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Homeless token nằm ở trung tâm hệ sinh thái Homelesswap. Mua nó, thắng nó, farm nó, tiêu nó, stake nó... thậm chí bạn có thể bỏ phiếu bằng nó!",
   "Explore Other Platforms": "Khám phá các nền tảng khác",
   "Visit Website": "Truy cập trang web",
-  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap giúp bạn dễ dàng tận dụng tiền điện tử của mình."
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap giúp bạn dễ dàng tận dụng tiền điện tử của mình.",
+  "White paper": "Bài trắng"
 }

@@ -899,7 +899,7 @@
   "Will you join them?": "Vrei să vii alături de ei?",
   "$%tvl% staked": "$%tvl% investit",
   "The moon is made of pancakes.": "Luna este făcută din clătite.",
-  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Tranzacționează, câștigă și câștigă criptomonede pe cea mai populară platformă descentralizată din galaxie.",
+  "Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.": "Schimbă criptomonede. Oferă lichiditate. Păstrează controlul.",
   "Lunar bunny": "Iepuraș lunar",
   "Total supply": "Aport total",
   "Burned to date": "Consumat până în prezent",
@@ -1547,7 +1547,6 @@
   "Highest": "Cel mai mare",
   "Connect": "Conectează-te",
   "Play Now": "Joacă acum",
-  "Litepaper": "Litepaper",
   "Win $%prize% in Lottery": "Câștigă %prize% $ la loterie",
   "Approve was called unnecessarily": "Aprobarea a fost solicitată inutil",
   "No token": "Niciun jeton",
@@ -2618,6 +2617,6 @@
   "Homeless token is at the heart of the Homelesswap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!": "Homeless token este în inima ecosistemului Homelesswap. Cumpărați-l, câștigați-l, farm-ați-l, cheltuiți-l, faceți stake... puteți chiar să votați cu el!",
   "Explore Other Platforms": "Explorați alte platforme",
   "Visit Website": "Vizitați site-ul",
-  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap face ca criptomoneda ta să lucreze ușor pentru tine."
-
+  "Homelesswap makes it easy to make your crypto work for you.": "Homelesswap face ca criptomoneda ta să lucreze ușor pentru tine.",
+  "White paper": "Cartea albă"
 }

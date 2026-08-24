@@ -3,6 +3,28 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Flex, Heading, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
 
+const isValidNumber = (value) => typeof value === 'number' && Number.isFinite(value)
+
+const formatPercent = (value) => {
+  if (!isValidNumber(value)) return '—'
+  return `${value.toFixed(2)}%`
+}
+
+const getPercentClassName = (value) => {
+  if (!isValidNumber(value)) return ''
+  return value >= 0 ? styles.green : styles.red
+}
+
+const formatMarketCap = (value) => {
+  if (!isValidNumber(value)) return '—'
+  return `$${(value / 1000000).toFixed(2)}M`
+}
+
+const formatPrice = (value) => {
+  if (!isValidNumber(value)) return '—'
+  return `$${value.toLocaleString()}`
+}
+
 const CryptoTable = () => {
   const [cryptoData, setCryptoData] = useState([])
   const { isMobile } = useMatchBreakpoints()
@@ -52,13 +74,13 @@ const CryptoTable = () => {
                     </Text>
                   </div>
                 </Flex>
-                <Text bold>${coin.current_price.toLocaleString()}</Text>
+                <Text bold>{formatPrice(coin.current_price)}</Text>
               </Flex>
 
               <Flex justifyContent="space-between" alignItems="center">
                 <Text fontSize="12px">24h Change:</Text>
-                <Text fontSize="12px" className={coin.price_change_percentage_24h >= 0 ? styles.green : styles.red}>
-                  {coin.price_change_percentage_24h.toFixed(2)}%
+                <Text fontSize="12px" className={getPercentClassName(coin.price_change_percentage_24h)}>
+                  {formatPercent(coin.price_change_percentage_24h)}
                 </Text>
               </Flex>
             </div>
@@ -94,10 +116,10 @@ const CryptoTable = () => {
                 <td className={styles.td}>
                   <img src={coin.image} alt={coin.name} className={styles.image} />
                 </td>
-                <td className={styles.td}>${coin.current_price.toLocaleString()}</td>
-                <td className={styles.td}>${(coin.market_cap / 1000000).toFixed(2)}M</td>
-                <td className={`${styles.td} ${coin.price_change_percentage_24h >= 0 ? styles.green : styles.red}`}>
-                  {coin.price_change_percentage_24h.toFixed(2)}%
+                <td className={styles.td}>{formatPrice(coin.current_price)}</td>
+                <td className={styles.td}>{formatMarketCap(coin.market_cap)}</td>
+                <td className={`${styles.td} ${getPercentClassName(coin.price_change_percentage_24h)}`}>
+                  {formatPercent(coin.price_change_percentage_24h)}
                 </td>
               </tr>
             ))}
